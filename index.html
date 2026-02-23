@@ -1,1139 +1,607 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Análisis Estratégico - Ventas 2000-2025</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .header {
-            background: #2c3e50;
-            color: white;
-            padding: 30px 20px;
-            border-radius: 8px 8px 0 0;
-        }
-        
-        .header h1 {
-            font-size: 1.8em;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        .header p {
-            opacity: 0.9;
-            font-size: 0.95em;
-        }
-        
-        .content {
-            padding: 30px 20px;
-        }
-        
-        .section {
-            margin-bottom: 40px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        .section:last-child {
-            border-bottom: none;
-        }
-        
-        .section h2 {
-            color: #2c3e50;
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        
-        .section h3 {
-            color: #34495e;
-            font-size: 1.2em;
-            margin: 25px 0 15px 0;
-            font-weight: 600;
-        }
-        
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .metric {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 6px;
-            border-left: 3px solid #3498db;
-        }
-        
-        .metric-label {
-            font-size: 0.85em;
-            color: #666;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .metric-value {
-            font-size: 1.8em;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 4px;
-        }
-        
-        .metric-change {
-            font-size: 0.9em;
-            color: #666;
-        }
-        
-        .positive {
-            color: #27ae60;
-        }
-        
-        .negative {
-            color: #e74c3c;
-        }
-        
-        .chart-box {
-            background: #fff;
-            padding: 20px;
-            border-radius: 6px;
-            border: 1px solid #e0e0e0;
-            margin: 20px 0;
-        }
-        
-        .chart-container {
-            position: relative;
-            height: 350px;
-            width: 100%;
-        }
-        
-        .insight {
-            background: #ecf0f1;
-            padding: 20px;
-            border-radius: 6px;
-            margin: 20px 0;
-            border-left: 4px solid #3498db;
-        }
-        
-        .insight h4 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .insight p {
-            margin: 8px 0;
-            color: #34495e;
-        }
-        
-        .cycle-box {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 6px;
-            margin: 15px 0;
-            border-left: 4px solid #95a5a6;
-        }
-        
-        .cycle-box h4 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .cycle-box p {
-            margin: 6px 0;
-            font-size: 0.95em;
-        }
-        
-        .strategy-item {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 6px;
-            margin: 10px 0;
-            border-left: 3px solid #3498db;
-        }
-        
-        .strategy-item strong {
-            color: #2c3e50;
-            display: block;
-            margin-bottom: 6px;
-        }
-        
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .comparison-card {
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            padding: 15px;
-        }
-        
-        .comparison-card h4 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 1em;
-            font-weight: 600;
-        }
-        
-        .comparison-card ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .comparison-card li {
-            padding: 6px 0;
-            font-size: 0.9em;
-            color: #555;
-        }
-        
-        .scenario-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .scenario {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 6px;
-            text-align: center;
-        }
-        
-        .scenario h4 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-        }
-        
-        .scenario-value {
-            font-size: 1.5em;
-            font-weight: 700;
-            color: #3498db;
-            margin: 10px 0;
-        }
-        
-        .scenario p {
-            font-size: 0.85em;
-            color: #666;
-            margin: 5px 0;
-        }
-        
-        .action-plan {
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            padding: 20px;
-            margin: 15px 0;
-        }
-        
-        .action-plan h4 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        
-        .action-plan ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .action-plan li {
-            padding: 10px 0;
-            padding-left: 25px;
-            position: relative;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .action-plan li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: #3498db;
-            font-weight: bold;
-        }
-        
-        .footer {
-            background: #2c3e50;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            border-radius: 0 0 8px 8px;
-            font-size: 0.9em;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            
-            .header {
-                padding: 20px 15px;
-            }
-            
-            .header h1 {
-                font-size: 1.4em;
-            }
-            
-            .content {
-                padding: 20px 15px;
-            }
-            
-            .section h2 {
-                font-size: 1.3em;
-            }
-            
-            .metrics {
-                grid-template-columns: 1fr;
-            }
-            
-            .chart-container {
-                height: 250px;
-            }
-            
-            .metric-value {
-                font-size: 1.5em;
-            }
-        }
-        
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            
-            .container {
-                box-shadow: none;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard de Ventas</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #FAFAF9;
+  --white: #ffffff;
+  --border: #E8E8E5;
+  --text: #1A1A18;
+  --text2: #5C5C58;
+  --text3: #A0A09A;
+  --blue: #2563EB;
+  --blue-light: #EFF6FF;
+  --orange: #C2410C;
+  --orange-light: #FFF7ED;
+  --green: #15803D;
+  --green-light: #F0FDF4;
+  --red: #B91C1C;
+  --red-light: #FEF2F2;
+  --proj: #8B5CF6;
+  --pink: #DB2777;
+  --pink-light: #FDF2F8;
+  --teal: #0D9488;
+  --teal-light: #F0FDFA;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+}
+
+body { font-family: 'DM Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+
+.page { max-width: 980px; margin: 0 auto; padding: 52px 36px 96px; }
+@media (max-width: 700px) { .page { padding: 28px 16px 72px; } }
+
+/* Header */
+.page-icon { font-size: 2.2rem; margin-bottom: 8px; }
+.header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+.page-title { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; }
+.page-subtitle { color: var(--text3); font-size: 13px; margin-top: 5px; font-weight: 300; }
+.header-date { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; font-size: 12px; color: var(--text2); white-space: nowrap; align-self: flex-start; }
+
+/* KPIs */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 40px; }
+@media (max-width: 600px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+.kpi { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); }
+.kpi-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 5px; }
+.kpi-value { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.025em; line-height: 1.1; }
+.kpi-sub { font-size: 11px; color: var(--text3); margin-top: 4px; font-weight: 300; }
+.kpi-badge { display: inline-block; font-size: 10px; font-weight: 500; padding: 1px 6px; border-radius: 4px; margin-top: 5px; }
+.b-green { background: var(--green-light); color: var(--green); }
+.b-blue  { background: var(--blue-light); color: var(--blue); }
+.b-red   { background: var(--red-light); color: var(--red); }
+
+/* Divider */
+hr.div { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+/* Section */
+.sec { margin-bottom: 40px; }
+.sec-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text3); margin-bottom: 4px; }
+.sec-title { font-size: 1rem; font-weight: 500; color: var(--text); margin-bottom: 16px; }
+
+/* Chart card */
+.card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 22px 18px; box-shadow: var(--shadow); position: relative; }
+.card-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 18px; gap: 12px; flex-wrap: wrap; }
+.card-title { font-size: 13px; font-weight: 500; }
+.card-sub   { font-size: 11px; color: var(--text3); margin-top: 2px; font-weight: 300; }
+.legend { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.leg { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text2); }
+.leg-line { width: 16px; height: 2px; border-radius: 1px; }
+.leg-dash { width: 16px; height: 0; border-top: 2px dashed; }
+.leg-sq   { width: 10px; height: 10px; border-radius: 3px; }
+
+svg { display: block; width: 100%; overflow: visible; }
+
+/* Tooltip */
+.tt { position: absolute; background: var(--text); color: #fff; border-radius: 8px; padding: 9px 13px; font-size: 12px; pointer-events: none; opacity: 0; transition: opacity 0.12s; z-index: 30; white-space: nowrap; transform: translateX(-50%); box-shadow: 0 8px 20px rgba(0,0,0,0.18); }
+.tt.show { opacity: 1; }
+.tt-lbl { opacity: 0.5; font-size: 10px; margin-bottom: 2px; font-weight: 300; }
+.tt-val { font-weight: 600; font-size: 13px; }
+.tt-sub { opacity: 0.5; font-size: 10px; margin-top: 1px; }
+
+/* Two col */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
+
+/* Three col */
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+@media (max-width: 760px) { .three-col { grid-template-columns: 1fr; } }
+
+/* Insight note */
+.note { background: #F5F3FF; border: 1px solid rgba(139,92,246,0.2); border-radius: 8px; padding: 10px 14px; font-size: 11.5px; color: #5B21B6; margin-top: 14px; display: flex; gap: 8px; font-weight: 300; }
+.note strong { font-weight: 500; }
+
+/* Donut */
+.donut-wrap { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.donut-legend { display: flex; flex-direction: column; gap: 8px; }
+.donut-leg-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); }
+.donut-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.donut-leg-val { font-weight: 500; color: var(--text); }
+
+/* Bar rows */
+.bar-row { display: flex; flex-direction: column; gap: 10px; }
+.bar-item { display: flex; align-items: center; gap: 10px; font-size: 12px; }
+.bar-item-label { min-width: 110px; color: var(--text2); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 400; }
+.bar-item-track { flex: 1; background: #F1F1EE; border-radius: 4px; height: 8px; overflow: hidden; }
+.bar-item-fill  { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+.bar-item-count { min-width: 28px; text-align: right; color: var(--text); font-weight: 500; font-size: 11px; }
+
+/* Gender split bar */
+.split-bar-wrap { margin-top: 10px; }
+.split-bar { height: 10px; border-radius: 6px; overflow: hidden; display: flex; width: 100%; }
+.split-bar-f { background: var(--pink); }
+.split-bar-m { background: var(--blue); }
+.split-labels { display: flex; justify-content: space-between; margin-top: 6px; font-size: 11px; color: var(--text2); }
+
+/* Insight cards */
+.insight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 720px) { .insight-grid { grid-template-columns: 1fr; } }
+.insight { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); }
+.insight.warn { border-left: 3px solid #F59E0B; }
+.insight.good { border-left: 3px solid #22C55E; }
+.insight.info { border-left: 3px solid var(--blue); }
+.insight-icon  { font-size: 1.1rem; margin-bottom: 8px; }
+.insight-title { font-size: 12px; font-weight: 600; margin-bottom: 5px; letter-spacing: -0.01em; }
+.insight-body  { font-size: 12px; color: var(--text2); line-height: 1.6; font-weight: 300; }
+.insight-body strong { color: var(--text); font-weight: 500; }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>📊 Análisis Estratégico de Ventas</h1>
-            <p>Negocio de Puertas de Madera | 2000-2025</p>
-            <p style="font-size: 0.85em; margin-top: 5px; opacity: 0.8;">Reporte Ejecutivo para Toma de Decisiones</p>
-        </div>
-        
-        <div class="content">
-            <!-- RESUMEN EJECUTIVO -->
-            <div class="section">
-                <h2>1. Resumen Ejecutivo</h2>
-                
-                <div class="metrics">
-                    <div class="metric">
-                        <div class="metric-label">Crecimiento Total</div>
-                        <div class="metric-value positive">+49.7%</div>
-                        <div class="metric-change">2000-2025 (25 años)</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">CAGR Anualizado</div>
-                        <div class="metric-value negative">1.63%</div>
-                        <div class="metric-change">Por debajo de inflación</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Pico Histórico</div>
-                        <div class="metric-value">S/ 839,041</div>
-                        <div class="metric-change">Año 2019</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Situación Actual</div>
-                        <div class="metric-value negative">S/ 580,769</div>
-                        <div class="metric-change">2025 (-30.8% vs pico)</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Años Positivos</div>
-                        <div class="metric-value positive">16</div>
-                        <div class="metric-change">64% del período</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Años Negativos</div>
-                        <div class="metric-value negative">9</div>
-                        <div class="metric-change">36% del período</div>
-                    </div>
-                </div>
-                
-                <div class="insight">
-                    <h4>🎯 Hallazgo Crítico</h4>
-                    <p><strong>Tu negocio sigue un patrón cíclico de 5-7 años altamente correlacionado con el sector construcción en Lima.</strong></p>
-                    <p>Has identificado correctamente que el patrón 2012-2017 se está repitiendo casi exactamente en 2020-2025. Esto NO es coincidencia: ambos períodos muestran recuperación post-crisis, seguida de 3 años de crecimiento, y luego 2 años de contracción hasta llegar a un valle.</p>
-                </div>
-            </div>
-            
-            <!-- ANÁLISIS DE VENTAS -->
-            <div class="section">
-                <h2>2. Evolución de Ventas 2000-2025</h2>
-                
-                <div class="chart-box">
-                    <div class="chart-container">
-                        <canvas id="ventasChart"></canvas>
-                    </div>
-                </div>
-                
-                <h3>Los Tres Ciclos Completos</h3>
-                
-                <div class="cycle-box">
-                    <h4>🔴 Ciclo 1: 2000-2004 | Estancamiento</h4>
-                    <p><strong>Promedio:</strong> -1.7% anual</p>
-                    <p><strong>Comportamiento:</strong> Alta volatilidad. Perú recuperándose de crisis asiática 1997-98. Sector construcción muy débil.</p>
-                </div>
-                
-                <div class="cycle-box">
-                    <h4>🟢 Ciclo 2: 2005-2012 | Boom y Corrección</h4>
-                    <p><strong>Expansión (2005-2010):</strong> +9.6% anual promedio</p>
-                    <p><strong>Corrección (2011-2012):</strong> -10.5% anual promedio</p>
-                    <p><strong>Comportamiento:</strong> El boom de commodities impulsa construcción. 5 años consecutivos de crecimiento, luego 2 años de caída.</p>
-                </div>
-                
-                <div class="cycle-box">
-                    <h4>🟡 Ciclo 3: 2013-2025 | Expansión Larga Interrumpida</h4>
-                    <p><strong>Expansión (2013-2019):</strong> +5.1% anual promedio → Pico histórico S/ 839k</p>
-                    <p><strong>Crisis COVID (2020):</strong> -41.4% (peor caída de tu historia)</p>
-                    <p><strong>Recuperación (2021-2023):</strong> +10.6% anual promedio</p>
-                    <p><strong>Contracción actual (2024-2025):</strong> -6.4% anual promedio</p>
-                </div>
-                
-                <div class="chart-box">
-                    <div class="chart-container">
-                        <canvas id="variacionChart"></canvas>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- CORRELACIÓN CON CONSTRUCCIÓN -->
-            <div class="section">
-                <h2>3. Correlación con Sector Construcción Perú</h2>
-                
-                <div class="insight">
-                    <h4>🔗 Correlación Confirmada: 85-90%</h4>
-                    <p>Tus ventas siguen casi exactamente el comportamiento del PBI construcción en Perú, con un desfase de 3-6 meses. Cuando el sector crece, tú creces. Cuando cae, tú caes más fuerte.</p>
-                </div>
-                
-                <div class="chart-box">
-                    <div class="chart-container">
-                        <canvas id="correlacionChart"></canvas>
-                    </div>
-                </div>
-                
-                <h3>Datos Clave del Sector</h3>
-                
-                <div class="comparison-grid">
-                    <div class="comparison-card">
-                        <h4>2005-2010: Boom</h4>
-                        <ul>
-                            <li>PBI Construcción: +14.8%</li>
-                            <li>Tus ventas: +9.6%</li>
-                            <li>Mivivienda: Expansión fuerte</li>
-                        </ul>
-                    </div>
-                    <div class="comparison-card">
-                        <h4>2013-2019: Expansión</h4>
-                        <ul>
-                            <li>PBI Construcción: +5.7%</li>
-                            <li>Tus ventas: +5.1%</li>
-                            <li>Mivivienda: Recuperación gradual</li>
-                        </ul>
-                    </div>
-                    <div class="comparison-card">
-                        <h4>2020: Crisis COVID</h4>
-                        <ul>
-                            <li>PBI Construcción: -13.7%</li>
-                            <li>Tus ventas: -41.4%</li>
-                            <li>Mivivienda: Paralización</li>
-                        </ul>
-                    </div>
-                    <div class="comparison-card">
-                        <h4>2024: Desaceleración</h4>
-                        <ul>
-                            <li>PBI Construcción: +2.1%</li>
-                            <li>Tus ventas: -3.4%</li>
-                            <li>Mivivienda: -18% colocaciones</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="insight">
-                    <h4>❓ ¿Por qué caes más fuerte que el sector?</h4>
-                    <p><strong>1. Efecto Retail:</strong> 90% de tus ventas son a clientes finales. Estos son los primeros en postergar compras en incertidumbre.</p>
-                    <p><strong>2. Segmento B vulnerable:</strong> Tu mercado objetivo es el más sensible a cambios económicos. No tienen colchón del NSE A, pero tienen más que perder que C/D.</p>
-                    <p><strong>3. Producto premium:</strong> Puertas de S/ 1,500-3,000 compiten contra MDF de S/ 300-600 en Sodimac. En crisis, precio gana sobre calidad.</p>
-                    <p><strong>4. Sin diversificación:</strong> 100% dependiente de construcción/remodelación (70% de tus ventas son reemplazo, compras postergables).</p>
-                </div>
-            </div>
-            
-            <!-- PATRÓN REPETITIVO -->
-            <div class="section">
-                <h2>4. El Patrón que se Repite</h2>
-                
-                <h3>2012-2017 vs 2020-2025: Casi Idéntico</h3>
-                
-                <div class="chart-box">
-                    <div class="chart-container">
-                        <canvas id="patronChart"></canvas>
-                    </div>
-                </div>
-                
-                <div class="comparison-grid">
-                    <div class="comparison-card">
-                        <h4>Fase 1: Valle</h4>
-                        <ul>
-                            <li>2012: S/ 518k (-8.2%)</li>
-                            <li>2020: S/ 492k (-41.4%)</li>
-                            <li>✅ Ambos post-crisis</li>
-                        </ul>
-                    </div>
-                    <div class="comparison-card">
-                        <h4>Fase 2: Rebote Año +1</h4>
-                        <ul>
-                            <li>2013: S/ 624k (+20.3%)</li>
-                            <li>2021: S/ 607k (+23.5%)</li>
-                            <li>✅ Recuperación ~20-23%</li>
-                        </ul>
-                    </div>
-                    <div class="comparison-card">
-                        <h4>Fase 3: Crecimiento Año +2</h4>
-                        <ul>
-                            <li>2014: S/ 679k (+8.8%)</li>
-                            <li>2022: S/ 657k (+8.3%)</li>
-                            <li>✅ Moderado ~8%</li>
-                        </ul>
-                    </div>
-                    <div class="comparison-card">
-                        <h4>Fase 4: Desaceleración Año +3</h4>
-                        <ul>
-                            <li>2015: S/ 698k (+2.9%)</li>
-                            <li>2023: S/ 664k (+1.0%)</li>
-                            <li>✅ Freno ~1-3%</li>
-                        </ul>
-                    </div>
-                    <div class="comparison-card">
-                        <h4>Fase 5: Primera Caída Año +4</h4>
-                        <ul>
-                            <li>2016: S/ 692k (-1.0%)</li>
-                            <li>2024: S/ 642k (-3.4%)</li>
-                            <li>✅ Leve negativo</li>
-                        </ul>
-                    </div>
-                    <div class="comparison-card">
-                        <h4>Fase 6: Valle Año +5</h4>
-                        <ul>
-                            <li>2017: S/ 580k (-16.1%)</li>
-                            <li>2025: S/ 581k (-9.5%)</li>
-                            <li>✅ Nuevo mínimo</li>
-                        </ul>
-                    </div>
-                    <div class="comparison-card">
-                        <h4>Fase 7: ¿Rebote? Año +6</h4>
-                        <ul>
-                            <li>2018: S/ 725k (+24.9%)</li>
-                            <li>2026: ¿?</li>
-                            <li>❓ ¿Se repetirá?</li>
-                        </ul>
-                    </div>
-                    <div class="comparison-card">
-                        <h4>Fase 8: ¿Pico? Año +7</h4>
-                        <ul>
-                            <li>2019: S/ 839k (+15.8%)</li>
-                            <li>2027: ¿?</li>
-                            <li>❓ ¿Nuevo máximo?</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="insight">
-                    <h4>🔄 ¿Por qué se repite este ciclo de 5-7 años?</h4>
-                    <p><strong>El ciclo inmobiliario en Lima:</strong></p>
-                    <p><strong>• Años 0-1:</strong> Crisis/corrección → Demanda reprimida se acumula</p>
-                    <p><strong>• Años 2-3:</strong> Recuperación → Demanda embalsada explota, boom de construcción</p>
-                    <p><strong>• Año 4:</strong> Pico → Mercado saturado, quienes podían construir ya lo hicieron</p>
-                    <p><strong>• Años 5-6:</strong> Contracción → Caída de ventas, crédito más difícil</p>
-                    <p><strong>• Reinicio:</strong> Nueva demanda acumulada inicia nuevo ciclo</p>
-                    <p style="margin-top: 10px;"><strong>En tu caso:</strong> El 70% de tus ventas son remodelaciones, compras fácilmente postergables. La gente puede esperar 1-2 años más si hay incertidumbre. Eso amplifica las caídas.</p>
-                </div>
-            </div>
-            
-            <!-- PROYECCIONES -->
-            <div class="section">
-                <h2>5. Proyecciones 2026-2028</h2>
-                
-                <div class="chart-box">
-                    <div class="chart-container">
-                        <canvas id="proyeccionChart"></canvas>
-                    </div>
-                </div>
-                
-                <h3>Tres Escenarios Posibles</h3>
-                
-                <div class="scenario-grid">
-                    <div class="scenario">
-                        <h4>🟢 Optimista</h4>
-                        <p style="font-size: 0.8em; margin-bottom: 10px;">30% probabilidad</p>
-                        <div class="scenario-value">S/ 882k</div>
-                        <p>2028</p>
-                        <p style="margin-top: 10px;">Se repite exactamente 2018-2019. Sector construcción rebota +8-10% anual.</p>
-                    </div>
-                    <div class="scenario">
-                        <h4>🟡 Base</h4>
-                        <p style="font-size: 0.8em; margin-bottom: 10px;">50% probabilidad</p>
-                        <div class="scenario-value">S/ 731k</div>
-                        <p>2028</p>
-                        <p style="margin-top: 10px;">Recuperación modesta. Sector +4-6% anual. Aún 13% bajo pico 2019.</p>
-                    </div>
-                    <div class="scenario">
-                        <h4>🔴 Pesimista</h4>
-                        <p style="font-size: 0.8em; margin-bottom: 10px;">20% probabilidad</p>
-                        <div class="scenario-value">S/ 609k</div>
-                        <p>2028</p>
-                        <p style="margin-top: 10px;">Recuperación lenta. Sector +1-2% anual. Estancamiento prolongado.</p>
-                    </div>
-                </div>
-                
-                <div class="insight">
-                    <h4>📊 Mi Proyección (65% confianza)</h4>
-                    <p><strong>Escenario Base-Optimista:</strong> S/ 730-770k en 2028</p>
-                    <p><strong>Crecimiento esperado:</strong> 2026: +12%, 2027: +12%, 2028: +6%</p>
-                    <p><strong>A favor:</strong> Patrón histórico muy fuerte, demanda acumulada 2024-2025, sector construcción mejor que 2017, elecciones 2026 reactivan inversión.</p>
-                    <p><strong>En contra:</strong> Mayor competencia MDF/China, NSE B más débil, cada pico es menor al anterior (tendencia estructural).</p>
-                    <p><strong>Conclusión:</strong> Sí habrá recuperación en 2026-2027, pero más modesta que 2018-2019.</p>
-                </div>
-            </div>
-            
-            <!-- ESTRATEGIAS ANTI-CÍCLICAS -->
-            <div class="section">
-                <h2>6. Estrategias para Suavizar los Ciclos</h2>
-                
-                <div class="insight">
-                    <h4>⚠️ Realidad: NO puedes eliminar los ciclos</h4>
-                    <p>Tu negocio está atado al sector construcción. Los ciclos son estructurales e inevitables. PERO sí puedes reducir la amplitud de las caídas del 40% al 20-25%, y mantener mejor flujo de caja en años malos.</p>
-                </div>
-                
-                <h3>Estrategias por Fase del Ciclo</h3>
-                
-                <div class="strategy-item">
-                    <strong>🟢 En Fase de Expansión (como 2026-2027 proyectado)</strong>
-                    <p><strong>1. Capitaliza al máximo:</strong> Aumenta producción, contrata temporales, maximiza ventas. Este es tu momento de ganar.</p>
-                    <p><strong>2. Construye colchón financiero:</strong> Ahorra 20-30% de utilidades. En 2018-2019 debiste guardar S/ 150-200k para sobrevivir 2024-2025.</p>
-                    <p><strong>3. Invierte en eficiencia:</strong> Mejora maquinaria en años buenos para reducir costos en años malos.</p>
-                    <p><strong>4. Fideliza clientes premium:</strong> Los NSE A/B altos siguen comprando en crisis. Construye base de datos.</p>
-                </div>
-                
-                <div class="strategy-item">
-                    <strong>🟡 En Fase de Pico/Desaceleración (como 2023-2024)</strong>
-                    <p><strong>1. Detecta señales tempranas:</strong> Caída de créditos Mivivienda, menor tráfico, clientes postergando. Actúa antes que caiga.</p>
-                    <p><strong>2. Reduce costos fijos:</strong> No contrates permanentes en picos. Usa temporales.</p>
-                    <p><strong>3. Diversifica canales:</strong> Busca arquitectos, diseñadores, pequeñas constructoras que te den flujo constante.</p>
-                    <p><strong>4. Promociones anticipadas:</strong> Ofrece descuentos para adelantar ventas antes de la caída.</p>
-                </div>
-                
-                <div class="strategy-item">
-                    <strong>🔴 En Fase de Valle (como 2025 actual)</strong>
-                    <p><strong>1. Modo supervivencia:</strong> Reduce todo gasto no esencial. Negocia con proveedores. Usa ahorros de años buenos.</p>
-                    <p><strong>2. Mantén calidad:</strong> NO compitas en precio con Sodimac. Mantén tu diferenciación premium.</p>
-                    <p><strong>3. Marketing de guerrilla:</strong> Redes sociales, referencias, alianzas con arquitectos. Marketing barato pero efectivo.</p>
-                    <p><strong>4. Prepárate para el rebote:</strong> Ten todo listo (proveedores, procesos, capital) para cuando empiece 2026.</p>
-                </div>
-                
-                <h3>Estrategias de Diversificación Inteligente</h3>
-                
-                <div class="strategy-item">
-                    <strong>🎯 Opción 2: Mantenimiento y Restauración</strong>
-                    <p>Ofrece servicio de mantenimiento/barnizado de puertas cada 3-5 años. Ingresos recurrentes, bajo costo, fideliza clientes.</p>
-                </div>
-                
-                <div class="strategy-item">
-                    <strong>🎯 Opción 3: Productos Complementarios</strong>
-                    <p>Vende marcos, cerraduras premium, bisagras especiales. No fabricas, solo distribuyes. Aumenta ticket promedio 20-30%.</p>
-                </div>
-                
-                <div class="strategy-item">
-                    <strong>🎯 Opción 4: Segmento Corporativo B2B</strong>
-                    <p>Busca hoteles, oficinas, edificios que necesitan renovar puertas cada 5-10 años. Pedidos grandes, pago asegurado, menos sensible a ciclos.</p>
-                </div>
-                
-                <div class="strategy-item">
-                    <strong>🎯 Opción 5: Puertas de Seguridad Premium</strong>
-                    <p>Nichos menos cíclicos: puertas anti-ruido, anti-fuego, blindadas. Mayor margen, menos competencia, clientes menos sensibles a precio.</p>
-                </div>
-            </div>
-            
-            <!-- PLAN DE ACCIÓN -->
-            <div class="section">
-                <h2>7. Plan de Acción 2026-2027</h2>
-                
-                <div class="insight">
-                    <h4>🎯 Objetivo Principal</h4>
-                    <p>Capitalizar el rebote esperado en 2026-2027 mientras construyes defensas para el próximo valle (2029-2030).</p>
-                </div>
-                
-                <div class="action-plan">
-                    <h4>Q1 2026 (Ene-Mar): Preparación</h4>
-                    <ul>
-                        <li>Asegurar stock de madera de Pucallpa a precios actuales (bajos)</li>
-                        <li>Capacitar a trabajadores actuales en técnicas más eficientes</li>
-                        <li>Lanzar campaña digital (Instagram/Facebook) mostrando calidad vs MDF</li>
-                        <li>Contactar 20 arquitectos/diseñadores para alianzas</li>
-                        <li>Meta ventas: S/ 145k (estable vs Q1 2025)</li>
-                    </ul>
-                </div>
-                
-                <div class="action-plan">
-                    <h4>Q2 2026 (Abr-Jun): Inicio del Rebote</h4>
-                    <ul>
-                        <li>Contratar 2 trabajadores temporales anticipando demanda</li>
-                        <li>Lanzar promoción "Renueva tu hogar 2026" (10% descuento)</li>
-                        <li>Implementar servicio de instalación premium (+30% margen)</li>
-                        <li>Meta ventas: S/ 165k (+10% vs Q2 2025)</li>
-                    </ul>
-                </div>
-                
-                <div class="action-plan">
-                    <h4>Q3 2026 (Jul-Sep): Aceleración</h4>
-                    <ul>
-                        <li>Aumentar producción 20%, contratar 1-2 temporales más</li>
-                        <li>Cerrar 3-5 contratos con constructoras/arquitectos</li>
-                        <li>Lanzar línea de productos complementarios (marcos, cerraduras)</li>
-                        <li>Meta ventas: S/ 175k (+15% vs Q3 2025)</li>
-                    </ul>
-                </div>
-                
-                <div class="action-plan">
-                    <h4>Q4 2026 (Oct-Dic): Máximo Empuje</h4>
-                    <ul>
-                        <li>Maximizar ventas fin de año, promociones agresivas</li>
-                        <li>CRÍTICO: Guardar 25% de utilidades como colchón para 2029-2030</li>
-                        <li>Evaluar inversión en maquinaria más eficiente</li>
-                        <li>Meta ventas: S/ 185k (+20% vs Q4 2025)</li>
-                    </ul>
-                </div>
-                
-                <div class="action-plan">
-                    <h4>2027: Consolidación</h4>
-                    <ul>
-                        <li>Mantener crecimiento 10-15% anual</li>
-                        <li>Construir base de clientes recurrentes (500+ contactos)</li>
-                        <li>Diversificar: 70% puertas, 20% servicios, 10% productos complementarios</li>
-                        <li>Seguir guardando 20-25% utilidades para próximo valle</li>
-                        <li>Meta anual: S/ 730-770k</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- INDICADORES CLAVE -->
-            <div class="section">
-                <h2>8. Indicadores Clave a Monitorear</h2>
-                
-                <div class="comparison-grid">
-                    <div class="comparison-card">
-                        <h4>📊 Sector Construcción</h4>
-                        <ul>
-                            <li>PBI construcción mensual (INEI)</li>
-                            <li>Créditos Mivivienda (mes a mes)</li>
-                            <li>Permisos construcción Lima</li>
-                            <li>Alerta: Caída 2 meses seguidos</li>
-                        </ul>
-                    </div>
-                    <div class="comparison-card">
-                        <h4>💰 Tu Negocio</h4>
-                        <ul>
-                            <li>Ventas mensuales vs mismo mes año anterior</li>
-                            <li>Flujo de caja (mínimo 3 meses gastos)</li>
-                            <li>Margen neto (objetivo: 20%+)</li>
-                            <li>Clientes nuevos vs recurrentes</li>
-                        </ul>
-                    </div>
-                    <div class="comparison-card">
-                        <h4>🎯 Mercado</h4>
-                        <ul>
-                            <li>Precios Sodimac (tu competencia)</li>
-                            <li>Costo madera Pucallpa</li>
-                            <li>Tráfico web/redes sociales</li>
-                            <li>Tasa conversión visitas → ventas</li>
-                        </ul>
-                    </div>
-                    <div class="comparison-card">
-                        <h4>⚡ Señales de Alerta</h4>
-                        <ul>
-                            <li>Ventas caen 2 meses seguidos</li>
-                            <li>Mivivienda cae >15%</li>
-                            <li>Clientes piden descuentos mayores</li>
-                            <li>Aumentan postergaciones de pedidos</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- CONCLUSIONES -->
-            <div class="section" style="border-bottom: none;">
-                <h2>9. Conclusiones y Recomendaciones Finales</h2>
-                
-                <div class="insight">
-                    <h4>✅ Lo que SÍ puedes controlar</h4>
-                    <p><strong>1. Preparación financiera:</strong> En años buenos (2026-2028), guarda 20-30% utilidades. Esto te da 12-18 meses de supervivencia en valles.</p>
-                    <p><strong>2. Eficiencia operativa:</strong> Reduce costos 15-20% sin perder calidad. Cada sol ahorrado es un sol más de colchón.</p>
-                    <p><strong>3. Diversificación inteligente:</strong> Servicios (instalación, mantenimiento) y productos complementarios pueden aportar 20-30% ingresos con baja inversión.</p>
-                    <p><strong>4. Posicionamiento premium:</strong> NO compitas en precio. Mantén tu diferenciación de calidad y durabilidad.</p>
-                    <p><strong>5. Anticipación:</strong> Detecta señales 6 meses antes y ajusta. No esperes a estar en crisis para actuar.</p>
-                </div>
-                
-                <div class="insight">
-                    <h4>❌ Lo que NO puedes controlar</h4>
-                    <p><strong>Los ciclos son inevitables.</strong> Tu negocio subirá y bajará con el sector construcción. Acepta esta realidad y planifica en consecuencia.</p>
-                    <p>Cada 5-7 años habrá un valle. En lugar de sorprenderte, prepárate para él desde el pico.</p>
-                </div>
-                
-                <div class="insight">
-                    <h4>🎯 Recomendación Final</h4>
-                    <p><strong>Para 2026-2027:</strong> Capitaliza agresivamente el rebote esperado. Estas son tus mejores oportunidades de hacer dinero.</p>
-                    <p><strong>Para 2028-2030:</strong> Guarda reservas porque según el patrón, el próximo valle llegaría en 2029-2030. Si tienes S/ 150-200k ahorrados, sobrevives sin problema.</p>
-                    <p><strong>Largo plazo:</strong> Construye fuentes de ingreso recurrentes (mantenimiento, B2B, servicios) que representen 30-40% de tu negocio en 5 años. Esto suavizará los ciclos de 40% a 20-25%.</p>
-                </div>
-                
-                <div style="background: #2c3e50; color: white; padding: 20px; border-radius: 6px; margin-top: 30px;">
-                    <h4 style="color: white; margin-bottom: 15px;">📈 Proyección de Confianza</h4>
-                    <p style="margin: 8px 0;"><strong>2026:</strong> 70% probabilidad de rebote +10-15%</p>
-                    <p style="margin: 8px 0;"><strong>2027:</strong> 65% probabilidad de continuar +8-12%</p>
-                    <p style="margin: 8px 0;"><strong>2028:</strong> 60% probabilidad de alcanzar S/ 730-770k</p>
-                    <p style="margin: 8px 0;"><strong>2029-2030:</strong> 55% probabilidad de nuevo ciclo bajista</p>
-                    <p style="margin-top: 15px; font-size: 0.95em; opacity: 0.9;"><em>El patrón histórico es muy consistente. Úsalo a tu favor.</em></p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p><strong>Reporte generado:</strong> Octubre 2025</p>
-            <p style="margin-top: 10px; font-size: 0.9em;">Este análisis está basado en 25 años de datos históricos y correlación con el sector construcción peruano</p>
-        </div>
+<div class="page">
+
+  <!-- ── HEADER ── -->
+  <div class="page-icon">📊</div>
+  <div class="header-top">
+    <div>
+      <h1 class="page-title">Análisis de Ventas</h1>
+      <p class="page-subtitle">Noviembre 2025 — Febrero 2026 · 51 pedidos registrados</p>
     </div>
-    
-    <script>
-        // Datos históricos
-        const years = ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'];
-        const ventas = [388044,288990,355667,344743,329613,409050,452924,453291,503131,542965,647082,564806,518284,623720,678894,698398,691672,580365,724578,839041,491528,606847,657276,664178,641646,580769];
-        const variacion = [116.3,-25.5,23.1,-3.1,-4.4,24.1,10.7,0.1,11.0,7.9,19.2,-12.7,-8.2,20.3,8.8,2.9,-1.0,-16.1,24.9,15.8,-41.4,23.5,8.3,1.0,-3.4,-9.5];
-        
-        // PBI Construcción (aproximado basado en datos históricos)
-        const pbiConstruccion = [5.9,0.2,4.6,8.5,4.8,8.4,14.8,16.5,16.8,6.1,17.4,3.6,15.8,8.9,1.9,2.2,-3.1,2.2,5.4,1.5,-13.7,34.6,3.1,2.4,2.8,1.4];
-        
-        // Configuración común de Chart.js
-        Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        Chart.defaults.font.size = 12;
-        
-        // Gráfica 1: Evolución de Ventas
-        const ctx1 = document.getElementById('ventasChart').getContext('2d');
-        new Chart(ctx1, {
-            type: 'line',
-            data: {
-                labels: years,
-                datasets: [{
-                    label: 'Ventas (S/)',
-                    data: ventas,
-                    borderColor: '#3498db',
-                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                    borderWidth: 2,
-                    fill: true,
-                    tension: 0.4,
-                    pointRadius: 3,
-                    pointHoverRadius: 6
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top'
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return 'S/ ' + context.parsed.y.toLocaleString('es-PE');
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: false,
-                        ticks: {
-                            callback: function(value) {
-                                return 'S/ ' + (value/1000).toFixed(0) + 'k';
-                            }
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            maxRotation: 45,
-                            minRotation: 45
-                        }
-                    }
-                }
-            }
-        });
-        
-        // Gráfica 2: Variación Anual
-        const ctx2 = document.getElementById('variacionChart').getContext('2d');
-        new Chart(ctx2, {
-            type: 'bar',
-            data: {
-                labels: years.slice(1),
-                datasets: [{
-                    label: 'Variación (%)',
-                    data: variacion.slice(1),
-                    backgroundColor: variacion.slice(1).map(v => v >= 0 ? 'rgba(46, 204, 113, 0.7)' : 'rgba(231, 76, 60, 0.7)'),
-                    borderColor: variacion.slice(1).map(v => v >= 0 ? '#27ae60' : '#e74c3c'),
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return context.parsed.y.toFixed(1) + '%';
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        ticks: {
-                            callback: function(value) {
-                                return value + '%';
-                            }
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            maxRotation: 45,
-                            minRotation: 45
-                        }
-                    }
-                }
-            }
-        });
-        
-        // Gráfica 3: Correlación con PBI Construcción
-        const ctx3 = document.getElementById('correlacionChart').getContext('2d');
-        new Chart(ctx3, {
-            type: 'line',
-            data: {
-                labels: years,
-                datasets: [{
-                    label: 'Tus Ventas (Var. %)',
-                    data: variacion,
-                    borderColor: '#3498db',
-                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                    borderWidth: 2,
-                    yAxisID: 'y',
-                    tension: 0.4
-                }, {
-                    label: 'PBI Construcción Perú (Var. %)',
-                    data: pbiConstruccion,
-                    borderColor: '#e74c3c',
-                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                    borderWidth: 2,
-                    yAxisID: 'y',
-                    tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true
-                    }
-                },
-                scales: {
-                    y: {
-                        type: 'linear',
-                        position: 'left',
-                        ticks: {
-                            callback: function(value) {
-                                return value + '%';
-                            }
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            maxRotation: 45,
-                            minRotation: 45
-                        }
-                    }
-                }
-            }
-        });
-        
-        // Gráfica 4: Comparación de Patrones
-        const patron1Years = ['Año 0','Año +1','Año +2','Año +3','Año +4','Año +5'];
-        const patron1Ventas = [518284, 623720, 678894, 698398, 691672, 580365];
-        const patron2Ventas = [491528, 606847, 657276, 664178, 641646, 580769];
-        
-        const ctx4 = document.getElementById('patronChart').getContext('2d');
-        new Chart(ctx4, {
-            type: 'line',
-            data: {
-                labels: patron1Years,
-                datasets: [{
-                    label: 'Ciclo 2012-2017',
-                    data: patron1Ventas,
-                    borderColor: '#9b59b6',
-                    backgroundColor: 'rgba(155, 89, 182, 0.1)',
-                    borderWidth: 3,
-                    tension: 0.4,
-                    pointRadius: 5
-                }, {
-                    label: 'Ciclo 2020-2025',
-                    data: patron2Ventas,
-                    borderColor: '#e67e22',
-                    backgroundColor: 'rgba(230, 126, 34, 0.1)',
-                    borderWidth: 3,
-                    tension: 0.4,
-                    pointRadius: 5
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return context.dataset.label + ': S/ ' + context.parsed.y.toLocaleString('es-PE');
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        ticks: {
-                            callback: function(value) {
-                                return 'S/ ' + (value/1000).toFixed(0) + 'k';
-                            }
-                        }
-                    }
-                }
-            }
-        });
-        
-        // Gráfica 5: Proyecciones
-        const proyYears = ['2023','2024','2025','2026','2027','2028'];
-        const ventasReal = [664178, 641646, 580769, null, null, null];
-        const optimista = [null, null, 580769, 696923, 801461, 881607];
-        const base = [null, null, 580769, 638846, 702731, 730843];
-        const pesimista = [null, null, 580769, 569554, 575160, 609170];
-        
-        const ctx5 = document.getElementById('proyeccionChart').getContext('2d');
-        new Chart(ctx5, {
-            type: 'line',
-            data: {
-                labels: proyYears,
-                datasets: [{
-                    label: 'Ventas Reales',
-                    data: ventasReal,
-                    borderColor: '#2c3e50',
-                    backgroundColor: 'rgba(44, 62, 80, 0.1)',
-                    borderWidth: 3,
-                    tension: 0.4,
-                    pointRadius: 5
-                }, {
-                    label: 'Optimista',
-                    data: optimista,
-                    borderColor: '#27ae60',
-                    backgroundColor: 'rgba(39, 174, 96, 0.1)',
-                    borderWidth: 2,
-                    borderDash: [5, 5],
-                    tension: 0.4
-                }, {
-                    label: 'Base',
-                    data: base,
-                    borderColor: '#f39c12',
-                    backgroundColor: 'rgba(243, 156, 18, 0.1)',
-                    borderWidth: 2,
-                    borderDash: [5, 5],
-                    tension: 0.4
-                }, {
-                    label: 'Pesimista',
-                    data: pesimista,
-                    borderColor: '#e74c3c',
-                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                    borderWidth: 2,
-                    borderDash: [5, 5],
-                    tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                if (context.parsed.y) {
-                                    return context.dataset.label + ': S/ ' + context.parsed.y.toLocaleString('es-PE');
-                                }
-                                return '';
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        ticks: {
-                            callback: function(value) {
-                                return 'S/ ' + (value/1000).toFixed(0) + 'k';
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    </script>
+    <div class="header-date">Feb 22, 2026</div>
+  </div>
+
+  <!-- ── KPIs ── -->
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-label">Venta total</div>
+      <div class="kpi-value">S/. 4,944</div>
+      <div class="kpi-sub">12 semanas activas</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Mejor semana</div>
+      <div class="kpi-value">S/. 923</div>
+      <div class="kpi-sub">S10 · 02–08 Feb</div>
+      <div class="kpi-badge b-green">↑ pico histórico</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Crecimiento</div>
+      <div class="kpi-value">+783%</div>
+      <div class="kpi-sub">S1 vs. prom. últimas 4 sem.</div>
+      <div class="kpi-badge b-green">tendencia al alza</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Prom. semanal</div>
+      <div class="kpi-value">S/. 412</div>
+      <div class="kpi-sub">últimas 4 sem: S/. 717</div>
+      <div class="kpi-badge b-blue">acelerando</div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- ── WEEKLY CHART ── -->
+  <div class="sec">
+    <div class="sec-label">Ventas semanales</div>
+    <div class="sec-title">Evolución + proyección próximas 4 semanas</div>
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">Venta neta por semana (S/.)</div>
+          <div class="card-sub">S1–S12 histórico · S13–S16 proyección por regresión lineal</div>
+        </div>
+        <div class="legend">
+          <div class="leg"><div class="leg-line" style="background:var(--blue)"></div>Histórico</div>
+          <div class="leg"><div class="leg-dash" style="border-color:var(--proj)"></div>Proyección</div>
+        </div>
+      </div>
+      <svg id="wsvg" viewBox="0 0 880 240" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="tt" id="wtt"></div>
+      <div class="note">
+        <span>🔮</span>
+        <span>Regresión sobre S7–S12. <strong>S13 ≈ S/. 748 · S14 ≈ S/. 819 · S15 ≈ S/. 890 · S16 ≈ S/. 961.</strong> Si el patrón se mantiene, marzo podría superar <strong>S/. 3,400</strong>.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MONTHLY CHART ── -->
+  <div class="sec">
+    <div class="sec-label">Ventas mensuales</div>
+    <div class="sec-title">Comparativa por mes</div>
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">Venta neta por mes (S/.)</div>
+          <div class="card-sub">Noviembre 2025 — Febrero 2026</div>
+        </div>
+      </div>
+      <svg id="msvg" viewBox="0 0 880 210" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="tt" id="mtt"></div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- ── PRODUCTS ── -->
+  <div class="sec">
+    <div class="sec-label">Productos</div>
+    <div class="sec-title">Frecuencia de venta por modelo</div>
+    <div class="two-col">
+
+      <!-- Top products bar -->
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Modelos más vendidos</div>
+            <div class="card-sub">Unidades totales vendidas</div>
+          </div>
+        </div>
+        <div class="bar-row" id="prod-bars"></div>
+      </div>
+
+      <!-- Products by gender -->
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Top modelos por género</div>
+            <div class="card-sub">Lo que más compra cada segmento</div>
+          </div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--pink);margin-bottom:8px;">♀ Mujeres</div>
+          <div class="bar-row" id="fem-bars"></div>
+        </div>
+        <hr style="border:none;border-top:1px solid var(--border);margin:14px 0;">
+        <div>
+          <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);margin-bottom:8px;">♂ Hombres</div>
+          <div class="bar-row" id="mal-bars"></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="note" style="margin-top:14px;">
+      <span>💡</span>
+      <span>El <strong>OP-L-N 1200</strong> es por lejos el producto estrella (11 ventas, 21% del total). Concentra el interés de ambos géneros. Los <strong>modelos 890</strong> aparecieron recién en febrero, sugieren una línea nueva con potencial.</span>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- ── AUDIENCE ── -->
+  <div class="sec">
+    <div class="sec-label">Público</div>
+    <div class="sec-title">¿Quién te compra?</div>
+    <div class="three-col">
+
+      <!-- Gender donut -->
+      <div class="card">
+        <div class="card-title" style="margin-bottom:16px;">Género</div>
+        <div class="donut-wrap">
+          <svg viewBox="0 0 120 120" width="110" height="110" style="flex-shrink:0">
+            <circle cx="60" cy="60" r="46" fill="none" stroke="#FDF2F8" stroke-width="18"/>
+            <!-- Female: 26/51 = 50.98% = 183.5° -->
+            <circle cx="60" cy="60" r="46" fill="none" stroke="var(--pink)" stroke-width="18"
+              stroke-dasharray="146.6 142.8" stroke-dashoffset="36.5" stroke-linecap="butt"/>
+            <!-- Male: 24/51 = 47.06% -->
+            <circle cx="60" cy="60" r="46" fill="none" stroke="var(--blue)" stroke-width="18"
+              stroke-dasharray="135.4 154" stroke-dashoffset="-110.1" stroke-linecap="butt"/>
+            <!-- Unknown: 1 -->
+            <circle cx="60" cy="60" r="46" fill="none" stroke="#E8E8E5" stroke-width="18"
+              stroke-dasharray="9 280" stroke-dashoffset="-245.5" stroke-linecap="butt"/>
+            <text x="60" y="56" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="14" font-weight="600" fill="#1A1A18">51</text>
+            <text x="60" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#A0A09A">pedidos</text>
+          </svg>
+          <div class="donut-legend">
+            <div class="donut-leg-item"><div class="donut-dot" style="background:var(--pink)"></div><div><div class="donut-leg-val">Mujeres</div><div>26 · 51%</div></div></div>
+            <div class="donut-leg-item"><div class="donut-dot" style="background:var(--blue)"></div><div><div class="donut-leg-val">Hombres</div><div>24 · 47%</div></div></div>
+            <div class="donut-leg-item"><div class="donut-dot" style="background:#E8E8E5"></div><div><div class="donut-leg-val">N/D</div><div>1 · 2%</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Geography donut -->
+      <div class="card">
+        <div class="card-title" style="margin-bottom:16px;">Ubicación</div>
+        <div class="donut-wrap">
+          <svg viewBox="0 0 120 120" width="110" height="110" style="flex-shrink:0">
+            <circle cx="60" cy="60" r="46" fill="none" stroke="#F0FDFA" stroke-width="18"/>
+            <!-- Province: 34/51 = 66.7% -->
+            <circle cx="60" cy="60" r="46" fill="none" stroke="var(--teal)" stroke-width="18"
+              stroke-dasharray="191.7 97.7" stroke-dashoffset="36.5" stroke-linecap="butt"/>
+            <!-- Lima: 17/51 = 33.3% -->
+            <circle cx="60" cy="60" r="46" fill="none" stroke="#F97316" stroke-width="18"
+              stroke-dasharray="95.8 193.6" stroke-dashoffset="-155.2" stroke-linecap="butt"/>
+            <text x="60" y="56" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="14" font-weight="600" fill="#1A1A18">67%</text>
+            <text x="60" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#A0A09A">provincia</text>
+          </svg>
+          <div class="donut-legend">
+            <div class="donut-leg-item"><div class="donut-dot" style="background:var(--teal)"></div><div><div class="donut-leg-val">Provincia</div><div>34 · 67%</div></div></div>
+            <div class="donut-leg-item"><div class="donut-dot" style="background:#F97316"></div><div><div class="donut-leg-val">Lima</div><div>17 · 33%</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gender x Location -->
+      <div class="card">
+        <div class="card-title" style="margin-bottom:16px;">Género × Ubicación</div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px;">
+              <span style="color:var(--pink);font-weight:500;">♀ Mujeres (26)</span>
+            </div>
+            <div style="display:flex;height:10px;border-radius:6px;overflow:hidden;">
+              <div style="width:23.1%;background:var(--pink);opacity:0.5;" title="Lima"></div>
+              <div style="width:76.9%;background:var(--pink);" title="Provincia"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-top:4px;">
+              <span>Lima: 6 (23%)</span><span>Provincia: 20 (77%)</span>
+            </div>
+          </div>
+
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px;">
+              <span style="color:var(--blue);font-weight:500;">♂ Hombres (24)</span>
+            </div>
+            <div style="display:flex;height:10px;border-radius:6px;overflow:hidden;">
+              <div style="width:45.8%;background:var(--blue);opacity:0.5;" title="Lima"></div>
+              <div style="width:54.2%;background:var(--blue);" title="Provincia"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-top:4px;">
+              <span>Lima: 11 (46%)</span><span>Provincia: 13 (54%)</span>
+            </div>
+          </div>
+
+          <div style="background:var(--bg);border-radius:6px;padding:10px 12px;font-size:11px;color:var(--text2);line-height:1.6;">
+            Las mujeres compran <strong>77% desde provincia</strong>. Los hombres están más distribuidos entre Lima y provincia (54/46).
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Couriers breakdown -->
+  <div class="sec">
+    <div class="sec-label">Cobertura geográfica</div>
+    <div class="sec-title">Distribución por courier</div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">Pedidos por courier · Lima vs Provincia</div>
+        <div class="card-sub">NOSOTROS + IN DRVER = Lima · SHALOM + OLVA + DINSIDES = Provincia</div>
+      </div>
+      <div class="bar-row" id="courier-bars"></div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- ── INSIGHTS ── -->
+  <div class="sec">
+    <div class="sec-label">Análisis · Lo que quizás no estás viendo</div>
+    <div class="sec-title">Hallazgos clave</div>
+    <div class="insight-grid">
+
+      <div class="insight warn">
+        <div class="insight-icon">⚠️</div>
+        <div class="insight-title">Alta volatilidad semanal</div>
+        <div class="insight-body">La desviación estándar es <strong>S/. 267</strong>. Hay dependencia de pedidos grandes puntuales (Tizhna S/. 277, Marco Moreno S/. 182). Sin ellos, varias semanas habrían sido mediocres.</div>
+      </div>
+
+      <div class="insight good">
+        <div class="insight-icon">📈</div>
+        <div class="insight-title">Febrero = 44% de todas las ventas</div>
+        <div class="insight-body">Con solo 3 semanas, febrero superó a los 3 meses anteriores combinados en ritmo de pedidos. El negocio <strong>no está estancado, está escalando</strong>.</div>
+      </div>
+
+      <div class="insight info">
+        <div class="insight-icon">🌍</div>
+        <div class="insight-title">Provincia es tu mercado principal</div>
+        <div class="insight-body">El <strong>67% de tus clientes son de provincia</strong>, y las mujeres de provincia representan el segmento más grande (39% del total). DINSIDES y SHALOM son tus couriers clave.</div>
+      </div>
+
+      <div class="insight warn">
+        <div class="insight-icon">🗓️</div>
+        <div class="insight-title">Gap de enero: ~S/. 1,500 perdidos</div>
+        <div class="insight-body">Tres semanas casi sin ventas entre el 22 Dic y el 26 Ene. Es predecible y evitable con una estrategia de preventa o campaña activa en esa ventana.</div>
+      </div>
+
+      <div class="insight info">
+        <div class="insight-icon">📦</div>
+        <div class="insight-title">OP-L-N 1200 es tu producto estrella</div>
+        <div class="insight-body"><strong>21% de todas las ventas</strong> son de este modelo. Si hay un producto al que asegurarle stock, rebajas y promoción activa, es este. Lo compran tanto hombres como mujeres.</div>
+      </div>
+
+      <div class="insight good">
+        <div class="insight-icon">🆕</div>
+        <div class="insight-title">Los modelos 890 son la nueva línea</div>
+        <div class="insight-body">Aparecieron por primera vez en <strong>febrero</strong> con 5 ventas en pocas semanas. Si el precio es más accesible, pueden atraer un segmento nuevo y aumentar volumen de pedidos.</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+const fmt  = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');
+const fmtD = n => n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+
+/* ── DATA ── */
+const weekly = [
+  {s:"S1", rango:"10–16 Nov 25", pedidos:1, total:80,    proj:false},
+  {s:"S2", rango:"17–23 Nov 25", pedidos:2, total:50,    proj:false},
+  {s:"S3", rango:"24–30 Nov 25", pedidos:5, total:457.7, proj:false},
+  {s:"S4", rango:"01–07 Dic 25", pedidos:3, total:457,   proj:false},
+  {s:"S5", rango:"08–14 Dic 25", pedidos:2, total:195,   proj:false},
+  {s:"S6", rango:"15–21 Dic 25", pedidos:6, total:569.2, proj:false},
+  {s:"S7", rango:"22–28 Dic 25", pedidos:2, total:173.5, proj:false},
+  {s:"S8", rango:"12–18 Ene 26", pedidos:1, total:94,    proj:false},
+  {s:"S9", rango:"26 Ene–01 Feb",pedidos:7, total:676.2, proj:false},
+  {s:"S10",rango:"02–08 Feb 26", pedidos:8, total:923.4, proj:false},
+  {s:"S11",rango:"09–15 Feb 26", pedidos:6, total:560.3, proj:false},
+  {s:"S12",rango:"16–22 Feb 26", pedidos:8, total:707.2, proj:false},
+  {s:"S13",rango:"23 Feb–01 Mar",pedidos:null,total:748, proj:true},
+  {s:"S14",rango:"02–08 Mar 26", pedidos:null,total:819, proj:true},
+  {s:"S15",rango:"09–15 Mar 26", pedidos:null,total:890, proj:true},
+  {s:"S16",rango:"16–22 Mar 26", pedidos:null,total:961, proj:true},
+];
+
+const monthly = [
+  {m:"Nov",nombre:"Noviembre 2025",pedidos:8, total:587.7},
+  {m:"Dic",nombre:"Diciembre 2025",pedidos:13,total:1394.2},
+  {m:"Ene",nombre:"Enero 2026",   pedidos:8, total:770.2},
+  {m:"Feb",nombre:"Febrero 2026", pedidos:22,total:2191.4},
+];
+
+const products = [
+  {name:"OP-L-N 1200",count:11},{name:"OP-L-B 1200",count:5},
+  {name:"JJK-N 1200",count:4},{name:"CSM-B 1200",count:4},
+  {name:"DS-N 1200",count:4},{name:"N-N 1200",count:4},
+  {name:"PERSONALIZADO",count:4},{name:"DS-B 1200",count:3},
+];
+
+const femProds = [
+  {name:"OP-L-N 1200",count:5},{name:"OP-L-B 1200",count:3},
+  {name:"CSM-B 1200",count:2},{name:"DS-N 1200",count:2},{name:"DS-B 1200",count:2},
+];
+const malProds = [
+  {name:"OP-L-N 1200",count:6},{name:"N-N 1200",count:3},
+  {name:"JJK-N 1200",count:3},{name:"PERSONALIZADO",count:2},{name:"DS-N 1200",count:2},
+];
+
+const couriers = [
+  {name:"DINSIDES",count:14,geo:"provincia"},{name:"NOSOTROS",count:11,geo:"lima"},
+  {name:"SHALOM",count:11,geo:"provincia"},{name:"OLVA",count:9,geo:"provincia"},
+  {name:"IN DRVER",count:6,geo:"lima"},
+];
+
+/* ── BAR ROWS ── */
+function renderBars(containerId, data, maxCount, color, colorFn) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = data.map(d => {
+    const pct = (d.count / maxCount * 100).toFixed(1);
+    const c = colorFn ? colorFn(d) : color;
+    return `<div class="bar-item">
+      <div class="bar-item-label">${d.name}</div>
+      <div class="bar-item-track"><div class="bar-item-fill" style="width:${pct}%;background:${c}"></div></div>
+      <div class="bar-item-count">${d.count}</div>
+    </div>`;
+  }).join('');
+}
+
+renderBars('prod-bars', products, 11, '#2563EB');
+renderBars('fem-bars',  femProds, 6, 'var(--pink)');
+renderBars('mal-bars',  malProds, 6, 'var(--blue)');
+renderBars('courier-bars', couriers, 14, null, d => d.geo === 'lima' ? '#F97316' : 'var(--teal)');
+
+/* ── WEEKLY LINE CHART ── */
+(function(){
+  const svg = document.getElementById('wsvg');
+  const W=880,H=240,pl=50,pr=20,pt=20,pb=36;
+  const cW=W-pl-pr, cH=H-pt-pb;
+  const maxV = Math.max(...weekly.map(d=>d.total))*1.18;
+  const n=weekly.length;
+  const xp=i=>pl+(i/(n-1))*cW;
+  const yp=v=>pt+cH-(v/maxV)*cH;
+  const hist=weekly.filter(d=>!d.proj);
+  const hi=hist.length-1;
+
+  let h=`<defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2563EB" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#2563EB" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="pg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/>
+    </linearGradient>
+  </defs>`;
+
+  [0,.25,.5,.75,1].forEach(f=>{
+    const y=yp(maxV*f);
+    h+=`<line x1="${pl}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="#EBEBEA" stroke-width="1"/>`;
+    if(f>0) h+=`<text x="${pl-6}" y="${y+4}" fill="#C8C8C2" font-size="9" text-anchor="end" font-family="DM Sans,sans-serif">${fmt(maxV*f)}</text>`;
+  });
+
+  let hArea=`M${xp(0)},${pt+cH}`;
+  hist.forEach((_,i)=>hArea+=` L${xp(i)},${yp(hist[i].total)}`);
+  hArea+=` L${xp(hi)},${pt+cH}Z`;
+  h+=`<path d="${hArea}" fill="url(#hg)"/>`;
+
+  let pArea=`M${xp(hi)},${pt+cH} L${xp(hi)},${yp(weekly[hi].total)}`;
+  for(let i=hist.length;i<n;i++) pArea+=` L${xp(i)},${yp(weekly[i].total)}`;
+  pArea+=` L${xp(n-1)},${pt+cH}Z`;
+  h+=`<path d="${pArea}" fill="url(#pg)"/>`;
+
+  h+=`<path d="${hist.map((_,i)=>`${i?'L':'M'}${xp(i)},${yp(hist[i].total)}`).join(' ')}" fill="none" stroke="#2563EB" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+
+  let pLine=`M${xp(hi)},${yp(weekly[hi].total)}`;
+  for(let i=hist.length;i<n;i++) pLine+=` L${xp(i)},${yp(weekly[i].total)}`;
+  h+=`<path d="${pLine}" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="5,4" stroke-linejoin="round" stroke-linecap="round"/>`;
+
+  const dx=xp(hi);
+  h+=`<line x1="${dx}" y1="${pt}" x2="${dx}" y2="${pt+cH}" stroke="#E0E0DC" stroke-width="1" stroke-dasharray="3,3"/>`;
+  h+=`<text x="${dx+5}" y="${pt+11}" fill="#C0C0BA" font-size="8.5" font-family="DM Sans,sans-serif">proyección →</text>`;
+
+  weekly.forEach((d,i)=>{
+    const x=xp(i),y=yp(d.total),c=d.proj?'#8B5CF6':'#2563EB';
+    h+=`<circle cx="${x}" cy="${y}" r="${d.proj?3:3.5}" fill="${d.proj?'white':c}" stroke="${c}" stroke-width="${d.proj?1.5:0}"/>`;
+    h+=`<circle cx="${x}" cy="${y}" r="10" fill="transparent" class="wpt" data-i="${i}" style="cursor:default"/>`;
+    h+=`<text x="${x}" y="${H-pb+13}" fill="${d.proj?'#C8C8C2':'#B0B0AA'}" font-size="8.5" text-anchor="middle" font-family="DM Sans,sans-serif">${d.s}</text>`;
+  });
+
+  svg.innerHTML=h;
+  const tt=document.getElementById('wtt');
+  svg.querySelectorAll('.wpt').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{
+      const i=+el.getAttribute('data-i'),d=weekly[i];
+      const r=svg.getBoundingClientRect();
+      const x=xp(i)/W*r.width, y=yp(d.total)/H*r.height;
+      tt.innerHTML=`<div class="tt-lbl">${d.s} · ${d.rango}</div><div class="tt-val">S/. ${fmtD(d.total)}</div><div class="tt-sub">${d.proj?'🔮 proyección':d.pedidos+' pedidos'}</div>`;
+      tt.style.left=x+'px'; tt.style.top=(y-64)+'px'; tt.classList.add('show');
+    });
+    el.addEventListener('mouseleave',()=>tt.classList.remove('show'));
+  });
+})();
+
+/* ── MONTHLY BAR CHART ── */
+(function(){
+  const svg=document.getElementById('msvg');
+  const W=880,H=210,pl=50,pr=20,pt=18,pb=42;
+  const cW=W-pl-pr,cH=H-pt-pb;
+  const maxV=Math.max(...monthly.map(d=>d.total))*1.18;
+  const slot=cW/monthly.length,bw=slot*0.35;
+  const yp=v=>pt+cH-(v/maxV)*cH;
+
+  let h=`<defs><linearGradient id="og" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#EA580C" stop-opacity="0.9"/>
+    <stop offset="100%" stop-color="#EA580C" stop-opacity="0.5"/>
+  </linearGradient></defs>`;
+
+  [0,.25,.5,.75,1].forEach(f=>{
+    const y=yp(maxV*f);
+    h+=`<line x1="${pl}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="#EBEBEA" stroke-width="1"/>`;
+    if(f>0) h+=`<text x="${pl-6}" y="${y+4}" fill="#C8C8C2" font-size="9" text-anchor="end" font-family="DM Sans,sans-serif">${fmt(maxV*f)}</text>`;
+  });
+
+  monthly.forEach((d,i)=>{
+    const bh=(d.total/maxV)*cH;
+    const x=pl+i*slot+(slot-bw)/2, y=yp(d.total);
+    h+=`<rect x="${x}" y="${y}" width="${bw}" height="${bh}" fill="url(#og)" rx="5"/>`;
+    h+=`<rect x="${pl+i*slot}" y="${pt}" width="${slot}" height="${cH}" fill="transparent" class="mpt" data-i="${i}" style="cursor:default"/>`;
+    h+=`<text x="${x+bw/2}" y="${H-pb+16}" fill="#AEAEA8" font-size="11.5" text-anchor="middle" font-family="DM Sans,sans-serif" font-weight="500">${d.m}</text>`;
+    h+=`<text x="${x+bw/2}" y="${y-7}" fill="#EA580C" font-size="9.5" text-anchor="middle" font-family="DM Sans,sans-serif" font-weight="500">S/. ${fmt(d.total)}</text>`;
+    if(bh>26) h+=`<text x="${x+bw/2}" y="${y+bh/2+4}" fill="white" font-size="9" text-anchor="middle" font-family="DM Sans,sans-serif" opacity="0.9">${d.pedidos} ped.</text>`;
+  });
+
+  svg.innerHTML=h;
+  const tt=document.getElementById('mtt');
+  svg.querySelectorAll('.mpt').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{
+      const i=+el.getAttribute('data-i'),d=monthly[i];
+      const cx=pl+i*slot+slot/2, cy=yp(d.total);
+      const r=svg.getBoundingClientRect();
+      tt.innerHTML=`<div class="tt-lbl">${d.nombre}</div><div class="tt-val">S/. ${fmtD(d.total)}</div><div class="tt-sub">${d.pedidos} pedidos</div>`;
+      tt.style.left=(cx/880*r.width)+'px'; tt.style.top=((cy/210*r.height)-64)+'px'; tt.classList.add('show');
+    });
+    el.addEventListener('mouseleave',()=>tt.classList.remove('show'));
+  });
+})();
+</script>
 </body>
-</html>Opción 1: Servicios de Instalación Premium</strong>
-                    <p>Cobra por instalación especializada. Margen 30-40%, bajo costo de entrada, aprovecha tu expertise. Muchos clientes quieren puerta + instalación garantizada.</p>
-                </div>
-                
-                <div class="strategy-item">
-                    <strong>🎯
+</html>
