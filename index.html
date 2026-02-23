@@ -16,273 +16,389 @@
   --text2: #5C5C58;
   --text3: #A0A09A;
   --blue: #2563EB;
-  --blue-light: #EFF6FF;
-  --orange: #C2410C;
-  --orange-light: #FFF7ED;
-  --green: #15803D;
-  --green-light: #F0FDF4;
-  --red: #B91C1C;
-  --red-light: #FEF2F2;
+  --blue-l: #EFF6FF;
+  --orange: #EA580C;
+  --orange-l: #FFF7ED;
+  --green: #16A34A;
+  --green-l: #F0FDF4;
+  --red: #DC2626;
+  --red-l: #FEF2F2;
+  --yellow: #D97706;
+  --yellow-l: #FFFBEB;
   --proj: #8B5CF6;
+  --proj-l: #F5F3FF;
   --pink: #DB2777;
-  --pink-light: #FDF2F8;
+  --pink-l: #FDF2F8;
   --teal: #0D9488;
-  --teal-light: #F0FDFA;
+  --teal-l: #F0FDFA;
   --radius: 10px;
-  --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+  --sh: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
 }
 
 body { font-family: 'DM Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
 
-.page { max-width: 980px; margin: 0 auto; padding: 52px 36px 96px; }
-@media (max-width: 700px) { .page { padding: 28px 16px 72px; } }
+.page { max-width: 980px; margin: 0 auto; padding: 52px 36px 100px; }
+@media (max-width: 700px) { .page { padding: 28px 16px 80px; } }
 
 /* Header */
 .page-icon { font-size: 2.2rem; margin-bottom: 8px; }
-.header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
-.page-title { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; }
-.page-subtitle { color: var(--text3); font-size: 13px; margin-top: 5px; font-weight: 300; }
-.header-date { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; font-size: 12px; color: var(--text2); white-space: nowrap; align-self: flex-start; }
+.header-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 38px; }
+.page-title { font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; }
+.page-sub { color: var(--text3); font-size: 13px; margin-top: 5px; font-weight: 300; }
+.date-chip { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 5px 11px; font-size: 12px; color: var(--text2); white-space: nowrap; align-self: flex-start; }
 
-/* KPIs */
-.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 40px; }
-@media (max-width: 600px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
-.kpi { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); }
+/* KPI grid */
+.kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 38px; }
+@media (max-width: 750px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+.kpi { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 15px 17px; box-shadow: var(--sh); }
 .kpi-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 5px; }
-.kpi-value { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.025em; line-height: 1.1; }
+.kpi-value { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.025em; line-height: 1.1; }
 .kpi-sub { font-size: 11px; color: var(--text3); margin-top: 4px; font-weight: 300; }
-.kpi-badge { display: inline-block; font-size: 10px; font-weight: 500; padding: 1px 6px; border-radius: 4px; margin-top: 5px; }
-.b-green { background: var(--green-light); color: var(--green); }
-.b-blue  { background: var(--blue-light); color: var(--blue); }
-.b-red   { background: var(--red-light); color: var(--red); }
+.badge { display: inline-block; font-size: 10px; font-weight: 500; padding: 1px 6px; border-radius: 4px; margin-top: 5px; }
+.b-green { background: var(--green-l); color: var(--green); }
+.b-blue  { background: var(--blue-l);  color: var(--blue); }
+.b-red   { background: var(--red-l);   color: var(--red); }
+.b-yellow{ background: var(--yellow-l);color: var(--yellow); }
+.b-proj  { background: var(--proj-l);  color: var(--proj); }
 
-/* Divider */
-hr.div { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+hr.div { border: none; border-top: 1px solid var(--border); margin: 34px 0; }
 
-/* Section */
-.sec { margin-bottom: 40px; }
+.sec { margin-bottom: 38px; }
 .sec-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text3); margin-bottom: 4px; }
-.sec-title { font-size: 1rem; font-weight: 500; color: var(--text); margin-bottom: 16px; }
+.sec-title { font-size: 1rem; font-weight: 500; margin-bottom: 16px; }
 
-/* Chart card */
-.card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 22px 18px; box-shadow: var(--shadow); position: relative; }
+/* Card */
+.card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 22px 18px; box-shadow: var(--sh); position: relative; }
 .card-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 18px; gap: 12px; flex-wrap: wrap; }
 .card-title { font-size: 13px; font-weight: 500; }
 .card-sub   { font-size: 11px; color: var(--text3); margin-top: 2px; font-weight: 300; }
-.legend { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.legend { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .leg { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text2); }
-.leg-line { width: 16px; height: 2px; border-radius: 1px; }
-.leg-dash { width: 16px; height: 0; border-top: 2px dashed; }
-.leg-sq   { width: 10px; height: 10px; border-radius: 3px; }
+.leg-line { width: 14px; height: 2px; border-radius: 1px; }
+.leg-dash { width: 14px; height: 0; border-top: 2px dashed; }
+.leg-sq   { width: 9px; height: 9px; border-radius: 2px; }
 
 svg { display: block; width: 100%; overflow: visible; }
 
-/* Tooltip */
-.tt { position: absolute; background: var(--text); color: #fff; border-radius: 8px; padding: 9px 13px; font-size: 12px; pointer-events: none; opacity: 0; transition: opacity 0.12s; z-index: 30; white-space: nowrap; transform: translateX(-50%); box-shadow: 0 8px 20px rgba(0,0,0,0.18); }
+.tt { position: absolute; background: var(--text); color: #fff; border-radius: 8px; padding: 8px 12px; font-size: 12px; pointer-events: none; opacity: 0; transition: opacity 0.1s; z-index: 30; white-space: nowrap; transform: translateX(-50%); box-shadow: 0 8px 20px rgba(0,0,0,0.18); }
 .tt.show { opacity: 1; }
 .tt-lbl { opacity: 0.5; font-size: 10px; margin-bottom: 2px; font-weight: 300; }
 .tt-val { font-weight: 600; font-size: 13px; }
 .tt-sub { opacity: 0.5; font-size: 10px; margin-top: 1px; }
 
-/* Two col */
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-@media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
-
-/* Three col */
+.two-col   { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-@media (max-width: 760px) { .three-col { grid-template-columns: 1fr; } }
+@media (max-width: 680px) { .two-col, .three-col { grid-template-columns: 1fr; } }
 
-/* Insight note */
-.note { background: #F5F3FF; border: 1px solid rgba(139,92,246,0.2); border-radius: 8px; padding: 10px 14px; font-size: 11.5px; color: #5B21B6; margin-top: 14px; display: flex; gap: 8px; font-weight: 300; }
+.note { background: var(--proj-l); border: 1px solid rgba(139,92,246,0.2); border-radius: 8px; padding: 10px 14px; font-size: 11.5px; color: #5B21B6; margin-top: 14px; display: flex; gap: 8px; font-weight: 300; }
 .note strong { font-weight: 500; }
 
-/* Donut */
-.donut-wrap { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
-.donut-legend { display: flex; flex-direction: column; gap: 8px; }
-.donut-leg-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); }
-.donut-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-.donut-leg-val { font-weight: 500; color: var(--text); }
+.warn-note { background: var(--red-l); border: 1px solid rgba(220,38,38,0.18); border-radius: 8px; padding: 10px 14px; font-size: 11.5px; color: #991B1B; margin-top: 14px; display: flex; gap: 8px; font-weight: 300; }
+.warn-note strong { font-weight: 500; }
 
 /* Bar rows */
-.bar-row { display: flex; flex-direction: column; gap: 10px; }
-.bar-item { display: flex; align-items: center; gap: 10px; font-size: 12px; }
-.bar-item-label { min-width: 110px; color: var(--text2); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 400; }
-.bar-item-track { flex: 1; background: #F1F1EE; border-radius: 4px; height: 8px; overflow: hidden; }
-.bar-item-fill  { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
-.bar-item-count { min-width: 28px; text-align: right; color: var(--text); font-weight: 500; font-size: 11px; }
+.bar-row { display: flex; flex-direction: column; gap: 9px; }
+.bar-item { display: flex; align-items: center; gap: 10px; }
+.bi-label { font-size: 11px; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 400; }
+.bi-track { flex: 1; background: #F1F1EE; border-radius: 4px; height: 8px; overflow: hidden; }
+.bi-fill  { height: 100%; border-radius: 4px; }
+.bi-val   { font-size: 11px; font-weight: 500; color: var(--text); min-width: 36px; text-align: right; }
+.bi-sub   { font-size: 10px; color: var(--text3); min-width: 32px; text-align: right; }
 
-/* Gender split bar */
-.split-bar-wrap { margin-top: 10px; }
-.split-bar { height: 10px; border-radius: 6px; overflow: hidden; display: flex; width: 100%; }
-.split-bar-f { background: var(--pink); }
-.split-bar-m { background: var(--blue); }
-.split-labels { display: flex; justify-content: space-between; margin-top: 6px; font-size: 11px; color: var(--text2); }
+/* Donut */
+.donut-wrap { display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; }
+.donut-legend { display: flex; flex-direction: column; gap: 7px; }
+.donut-leg-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text2); }
+.donut-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.donut-leg-val { font-weight: 500; color: var(--text); }
 
-/* Insight cards */
+/* Vendor cards */
+.vendor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 600px) { .vendor-grid { grid-template-columns: 1fr; } }
+.vendor-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--sh); }
+.vendor-name { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 12px; }
+.vendor-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.vs-item-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); font-weight: 500; margin-bottom: 2px; }
+.vs-item-val   { font-size: 1rem; font-weight: 600; letter-spacing: -0.02em; }
+
+/* Insights */
 .insight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 @media (max-width: 720px) { .insight-grid { grid-template-columns: 1fr; } }
-.insight { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); }
+.insight { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--sh); }
 .insight.warn { border-left: 3px solid #F59E0B; }
 .insight.good { border-left: 3px solid #22C55E; }
 .insight.info { border-left: 3px solid var(--blue); }
+.insight.danger { border-left: 3px solid var(--red); }
 .insight-icon  { font-size: 1.1rem; margin-bottom: 8px; }
-.insight-title { font-size: 12px; font-weight: 600; margin-bottom: 5px; letter-spacing: -0.01em; }
+.insight-title { font-size: 12px; font-weight: 600; margin-bottom: 5px; }
 .insight-body  { font-size: 12px; color: var(--text2); line-height: 1.6; font-weight: 300; }
 .insight-body strong { color: var(--text); font-weight: 500; }
+
+/* Problem tag */
+.prob-tag { display: inline-block; font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 4px; background: var(--red-l); color: var(--red); }
+
+/* Margin indicator */
+.margin-bar-wrap { margin-top: 6px; }
+.margin-track { height: 6px; background: #F1F1EE; border-radius: 3px; overflow: hidden; }
+.margin-fill  { height: 100%; border-radius: 3px; background: var(--green); }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- ── HEADER ── -->
+  <!-- HEADER -->
   <div class="page-icon">📊</div>
-  <div class="header-top">
+  <div class="header-row">
     <div>
       <h1 class="page-title">Análisis de Ventas</h1>
-      <p class="page-subtitle">Noviembre 2025 — Febrero 2026 · 51 pedidos registrados</p>
+      <p class="page-sub">Noviembre 2025 — Febrero 2026 · 51 pedidos</p>
     </div>
-    <div class="header-date">Feb 22, 2026</div>
+    <div class="date-chip">Feb 22, 2026</div>
   </div>
 
-  <!-- ── KPIs ── -->
+  <!-- KPIs -->
   <div class="kpi-grid">
     <div class="kpi">
-      <div class="kpi-label">Venta total</div>
-      <div class="kpi-value">S/. 4,944</div>
-      <div class="kpi-sub">12 semanas activas</div>
+      <div class="kpi-label">Venta neta total</div>
+      <div class="kpi-value">S/. 4,958</div>
+      <div class="kpi-sub">51 pedidos</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Utilidad total</div>
+      <div class="kpi-value">S/. 2,680</div>
+      <div class="kpi-sub">margen promedio 53%</div>
+      <div class="badge b-green">↑ sólido</div>
     </div>
     <div class="kpi">
       <div class="kpi-label">Mejor semana</div>
-      <div class="kpi-value">S/. 923</div>
-      <div class="kpi-sub">S10 · 02–08 Feb</div>
-      <div class="kpi-badge b-green">↑ pico histórico</div>
+      <div class="kpi-value">S/. 593</div>
+      <div class="kpi-sub">S10 · util. 63.4% margen</div>
+      <div class="badge b-green">pico histórico</div>
     </div>
     <div class="kpi">
-      <div class="kpi-label">Crecimiento</div>
-      <div class="kpi-value">+783%</div>
-      <div class="kpi-sub">S1 vs. prom. últimas 4 sem.</div>
-      <div class="kpi-badge b-green">tendencia al alza</div>
+      <div class="kpi-label">Pedidos c/ problema</div>
+      <div class="kpi-value">2 / 51</div>
+      <div class="kpi-sub">S/. 24.00 afectados</div>
+      <div class="badge b-yellow">3.9% tasa</div>
     </div>
     <div class="kpi">
-      <div class="kpi-label">Prom. semanal</div>
-      <div class="kpi-value">S/. 412</div>
-      <div class="kpi-sub">últimas 4 sem: S/. 717</div>
-      <div class="kpi-badge b-blue">acelerando</div>
+      <div class="kpi-label">Ticket promedio</div>
+      <div class="kpi-value">S/. 97.2</div>
+      <div class="kpi-sub">utilidad prom. S/. 52.5</div>
+      <div class="badge b-blue">estable</div>
     </div>
   </div>
 
   <hr class="div">
 
-  <!-- ── WEEKLY CHART ── -->
+  <!-- WEEKLY: VENTA + UTILIDAD -->
   <div class="sec">
     <div class="sec-label">Ventas semanales</div>
-    <div class="sec-title">Evolución + proyección próximas 4 semanas</div>
+    <div class="sec-title">Venta neta + Utilidad + Proyección</div>
     <div class="card">
       <div class="card-head">
         <div>
-          <div class="card-title">Venta neta por semana (S/.)</div>
-          <div class="card-sub">S1–S12 histórico · S13–S16 proyección por regresión lineal</div>
+          <div class="card-title">Venta neta vs. Utilidad por semana (S/.)</div>
+          <div class="card-sub">S1–S12 histórico · S13–S16 proyección · áreas sombreadas = utilidad</div>
         </div>
         <div class="legend">
-          <div class="leg"><div class="leg-line" style="background:var(--blue)"></div>Histórico</div>
+          <div class="leg"><div class="leg-line" style="background:var(--blue)"></div>Venta neta</div>
+          <div class="leg"><div class="leg-line" style="background:var(--green)"></div>Utilidad</div>
           <div class="leg"><div class="leg-dash" style="border-color:var(--proj)"></div>Proyección</div>
         </div>
       </div>
-      <svg id="wsvg" viewBox="0 0 880 240" preserveAspectRatio="xMidYMid meet"></svg>
+      <svg id="wsvg" viewBox="0 0 880 250" preserveAspectRatio="xMidYMid meet"></svg>
       <div class="tt" id="wtt"></div>
       <div class="note">
         <span>🔮</span>
-        <span>Regresión sobre S7–S12. <strong>S13 ≈ S/. 748 · S14 ≈ S/. 819 · S15 ≈ S/. 890 · S16 ≈ S/. 961.</strong> Si el patrón se mantiene, marzo podría superar <strong>S/. 3,400</strong>.</span>
+        <span>Proyección lineal sobre S7–S12. <strong>S13 ≈ S/. 748 · S14 ≈ S/. 819 · S15 ≈ S/. 890 · S16 ≈ S/. 961.</strong> Utilidad proyectada para marzo: <strong>~S/. 1,750</strong> si el margen se mantiene en ~53%.</span>
       </div>
     </div>
   </div>
 
-  <!-- ── MONTHLY CHART ── -->
+  <!-- MONTHLY -->
   <div class="sec">
     <div class="sec-label">Ventas mensuales</div>
-    <div class="sec-title">Comparativa por mes</div>
+    <div class="sec-title">Venta neta · Costo · Utilidad por mes</div>
     <div class="card">
       <div class="card-head">
         <div>
-          <div class="card-title">Venta neta por mes (S/.)</div>
-          <div class="card-sub">Noviembre 2025 — Febrero 2026</div>
+          <div class="card-title">Desglose mensual (S/.)</div>
+          <div class="card-sub">Barras apiladas: costo (rojo suave) + utilidad (verde)</div>
+        </div>
+        <div class="legend">
+          <div class="leg"><div class="leg-sq" style="background:rgba(22,163,74,0.75)"></div>Utilidad</div>
+          <div class="leg"><div class="leg-sq" style="background:rgba(220,38,38,0.25)"></div>Costo</div>
         </div>
       </div>
-      <svg id="msvg" viewBox="0 0 880 210" preserveAspectRatio="xMidYMid meet"></svg>
+      <svg id="msvg" viewBox="0 0 880 220" preserveAspectRatio="xMidYMid meet"></svg>
       <div class="tt" id="mtt"></div>
     </div>
   </div>
 
   <hr class="div">
 
-  <!-- ── PRODUCTS ── -->
+  <!-- PRODUCTOS -->
   <div class="sec">
     <div class="sec-label">Productos</div>
-    <div class="sec-title">Frecuencia de venta por modelo</div>
+    <div class="sec-title">Frecuencia, utilidad y margen por modelo</div>
     <div class="two-col">
 
-      <!-- Top products bar -->
       <div class="card">
-        <div class="card-head">
-          <div>
-            <div class="card-title">Modelos más vendidos</div>
-            <div class="card-sub">Unidades totales vendidas</div>
-          </div>
-        </div>
-        <div class="bar-row" id="prod-bars"></div>
+        <div class="card-head"><div>
+          <div class="card-title">Modelos más vendidos</div>
+          <div class="card-sub">Unidades · Utilidad total</div>
+        </div></div>
+        <div class="bar-row" id="prod-freq"></div>
       </div>
 
-      <!-- Products by gender -->
       <div class="card">
-        <div class="card-head">
-          <div>
-            <div class="card-title">Top modelos por género</div>
-            <div class="card-sub">Lo que más compra cada segmento</div>
-          </div>
-        </div>
-        <div style="margin-bottom:14px;">
-          <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--pink);margin-bottom:8px;">♀ Mujeres</div>
-          <div class="bar-row" id="fem-bars"></div>
-        </div>
-        <hr style="border:none;border-top:1px solid var(--border);margin:14px 0;">
-        <div>
-          <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);margin-bottom:8px;">♂ Hombres</div>
-          <div class="bar-row" id="mal-bars"></div>
-        </div>
+        <div class="card-head"><div>
+          <div class="card-title">Margen % por producto</div>
+          <div class="card-sub">Utilidad ÷ Venta neta promedio</div>
+        </div></div>
+        <div class="bar-row" id="prod-margin"></div>
       </div>
 
     </div>
+
     <div class="note" style="margin-top:14px;">
       <span>💡</span>
-      <span>El <strong>OP-L-N 1200</strong> es por lejos el producto estrella (11 ventas, 21% del total). Concentra el interés de ambos géneros. Los <strong>modelos 890</strong> aparecieron recién en febrero, sugieren una línea nueva con potencial.</span>
+      <span><strong>PERSONALIZADO</strong> tiene el margen más alto (74%) y la mayor utilidad por pedido (S/. 102). <strong>CSM-B 1200</strong> es el peor (32% margen, S/. 9 de utilidad promedio en casos normales). Si puedes hacer más pedidos personalizados, hazlos.</span>
     </div>
   </div>
 
   <hr class="div">
 
-  <!-- ── AUDIENCE ── -->
+  <!-- VENDEDORES -->
+  <div class="sec">
+    <div class="sec-label">Vendedores</div>
+    <div class="sec-title">Comparativa Alberto vs. Gonzalo</div>
+    <div class="vendor-grid">
+      <div class="vendor-card">
+        <div class="vendor-name">🧑 Alberto</div>
+        <div class="vendor-stats">
+          <div><div class="vs-item-label">Pedidos</div><div class="vs-item-val">8</div></div>
+          <div><div class="vs-item-label">Venta neta</div><div class="vs-item-val">S/. 644</div></div>
+          <div><div class="vs-item-label">Utilidad</div><div class="vs-item-val">S/. 350</div></div>
+          <div><div class="vs-item-label">Margen</div><div class="vs-item-val">54.3%</div></div>
+          <div><div class="vs-item-label">Ticket prom.</div><div class="vs-item-val">S/. 80.5</div></div>
+          <div><div class="vs-item-label">Util. por ped.</div><div class="vs-item-val">S/. 43.7</div></div>
+        </div>
+        <div class="margin-bar-wrap">
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:4px;margin-top:12px;"><span>Participación en ventas</span><span>13%</span></div>
+          <div class="margin-track"><div class="margin-fill" style="width:13%;background:var(--blue)"></div></div>
+        </div>
+      </div>
+      <div class="vendor-card">
+        <div class="vendor-name">🧑 Gonzalo</div>
+        <div class="vendor-stats">
+          <div><div class="vs-item-label">Pedidos</div><div class="vs-item-val">43</div></div>
+          <div><div class="vs-item-label">Venta neta</div><div class="vs-item-val">S/. 4,315</div></div>
+          <div><div class="vs-item-label">Utilidad</div><div class="vs-item-val">S/. 2,330</div></div>
+          <div><div class="vs-item-label">Margen</div><div class="vs-item-val">54.0%</div></div>
+          <div><div class="vs-item-label">Ticket prom.</div><div class="vs-item-val">S/. 100.3</div></div>
+          <div><div class="vs-item-label">Util. por ped.</div><div class="vs-item-val">S/. 54.2</div></div>
+        </div>
+        <div class="margin-bar-wrap">
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:4px;margin-top:12px;"><span>Participación en ventas</span><span>87%</span></div>
+          <div class="margin-track"><div class="margin-fill" style="width:87%;"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="warn-note">
+      <span>⚠️</span>
+      <span>Alberto tiene prácticamente <strong>0 ventas desde diciembre</strong>. Su ticket promedio (S/. 80.5) es S/. 20 menor que Gonzalo. Sin embargo, su <strong>margen es casi idéntico (54.3%)</strong> — el problema no es eficiencia, es volumen. Necesita más pedidos asignados.</span>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- PROBLEMAS -->
+  <div class="sec">
+    <div class="sec-label">Incidencias</div>
+    <div class="sec-title">Pedidos con problemas registrados</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-head"><div>
+          <div class="card-title">Historial de problemas</div>
+          <div class="card-sub">2 incidencias · S/. 24.00 en costos adicionales</div>
+        </div></div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:12px;background:var(--red-l);border-radius:8px;border:1px solid rgba(220,38,38,0.12);">
+            <div style="font-size:1.2rem;flex-shrink:0;">📦</div>
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                <span style="font-size:12px;font-weight:500;">#33 · Anthony Flores</span>
+                <span class="prob-tag">CAMBIO</span>
+              </div>
+              <div style="font-size:11.5px;color:var(--text2);font-weight:300;">N-N 1200 · Feb 5, 2026 · Costo adicional: <strong style="color:var(--red)">S/. 12.00</strong></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:12px;background:var(--yellow-l);border-radius:8px;border:1px solid rgba(217,119,6,0.15);">
+            <div style="font-size:1.2rem;flex-shrink:0;">🔀</div>
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                <span style="font-size:12px;font-weight:500;">#44 · Mery Pamela Santos</span>
+                <span style="display:inline-block;font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;background:var(--yellow-l);color:var(--yellow);border:1px solid rgba(217,119,6,0.2);">REDIRECCIONAMIENTO</span>
+              </div>
+              <div style="font-size:11.5px;color:var(--text2);font-weight:300;">OP-L-B 890 · Feb 16, 2026 · Costo adicional: <strong style="color:var(--yellow)">S/. 12.00</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div>
+          <div class="card-title">Tasa de problemas</div>
+          <div class="card-sub">Por courier · pedidos afectados</div>
+        </div></div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div>
+            <div style="font-size:11px;color:var(--text2);margin-bottom:6px;">Tasa global de incidencias</div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="flex:1;height:10px;background:#F1F1EE;border-radius:5px;overflow:hidden;">
+                <div style="width:3.9%;height:100%;background:var(--red);border-radius:5px;"></div>
+              </div>
+              <span style="font-size:12px;font-weight:500;color:var(--text);">3.9%</span>
+            </div>
+            <div style="font-size:11px;color:var(--text3);margin-top:4px;font-weight:300;">2 de 51 pedidos</div>
+          </div>
+          <div style="background:var(--bg);border-radius:8px;padding:12px;font-size:12px;color:var(--text2);line-height:1.7;">
+            <div style="font-weight:500;color:var(--text);margin-bottom:6px;">Ambos problemas ocurrieron en:</div>
+            <div>· <strong>DINSIDES</strong> (cambio) — 1 de 14 pedidos = 7.1%</div>
+            <div>· <strong>SHALOM</strong> (redireccionamiento) — 1 de 11 pedidos = 9.1%</div>
+            <div style="margin-top:8px;color:var(--text3);font-size:11px;">NOSOTROS, IN DRVER y OLVA: 0 incidencias.</div>
+          </div>
+          <div style="font-size:11.5px;color:var(--text2);background:var(--green-l);border-radius:8px;padding:10px 12px;border:1px solid rgba(22,163,74,0.15);font-weight:300;">
+            ✅ La tasa de 3.9% es baja. Si crece por encima del 8–10%, sería señal de alerta operativa.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- PÚBLICO -->
   <div class="sec">
     <div class="sec-label">Público</div>
     <div class="sec-title">¿Quién te compra?</div>
     <div class="three-col">
 
-      <!-- Gender donut -->
       <div class="card">
         <div class="card-title" style="margin-bottom:16px;">Género</div>
         <div class="donut-wrap">
-          <svg viewBox="0 0 120 120" width="110" height="110" style="flex-shrink:0">
-            <circle cx="60" cy="60" r="46" fill="none" stroke="#FDF2F8" stroke-width="18"/>
-            <!-- Female: 26/51 = 50.98% = 183.5° -->
-            <circle cx="60" cy="60" r="46" fill="none" stroke="var(--pink)" stroke-width="18"
-              stroke-dasharray="146.6 142.8" stroke-dashoffset="36.5" stroke-linecap="butt"/>
-            <!-- Male: 24/51 = 47.06% -->
-            <circle cx="60" cy="60" r="46" fill="none" stroke="var(--blue)" stroke-width="18"
-              stroke-dasharray="135.4 154" stroke-dashoffset="-110.1" stroke-linecap="butt"/>
-            <!-- Unknown: 1 -->
-            <circle cx="60" cy="60" r="46" fill="none" stroke="#E8E8E5" stroke-width="18"
-              stroke-dasharray="9 280" stroke-dashoffset="-245.5" stroke-linecap="butt"/>
-            <text x="60" y="56" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="14" font-weight="600" fill="#1A1A18">51</text>
-            <text x="60" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#A0A09A">pedidos</text>
+          <svg viewBox="0 0 120 120" width="100" height="100" style="flex-shrink:0">
+            <circle cx="60" cy="60" r="44" fill="none" stroke="#F5F5F3" stroke-width="16"/>
+            <circle cx="60" cy="60" r="44" fill="none" stroke="var(--pink)" stroke-width="16"
+              stroke-dasharray="140.2 136.7" stroke-dashoffset="34.9"/>
+            <circle cx="60" cy="60" r="44" fill="none" stroke="var(--blue)" stroke-width="16"
+              stroke-dasharray="129.4 147.5" stroke-dashoffset="-105.3"/>
+            <circle cx="60" cy="60" r="44" fill="none" stroke="#E8E8E5" stroke-width="16"
+              stroke-dasharray="8.6 268.1" stroke-dashoffset="-234.7"/>
+            <text x="60" y="55" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#1A1A18">51</text>
+            <text x="60" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#A0A09A">pedidos</text>
           </svg>
           <div class="donut-legend">
             <div class="donut-leg-item"><div class="donut-dot" style="background:var(--pink)"></div><div><div class="donut-leg-val">Mujeres</div><div>26 · 51%</div></div></div>
@@ -292,287 +408,274 @@ svg { display: block; width: 100%; overflow: visible; }
         </div>
       </div>
 
-      <!-- Geography donut -->
       <div class="card">
         <div class="card-title" style="margin-bottom:16px;">Ubicación</div>
         <div class="donut-wrap">
-          <svg viewBox="0 0 120 120" width="110" height="110" style="flex-shrink:0">
-            <circle cx="60" cy="60" r="46" fill="none" stroke="#F0FDFA" stroke-width="18"/>
-            <!-- Province: 34/51 = 66.7% -->
-            <circle cx="60" cy="60" r="46" fill="none" stroke="var(--teal)" stroke-width="18"
-              stroke-dasharray="191.7 97.7" stroke-dashoffset="36.5" stroke-linecap="butt"/>
-            <!-- Lima: 17/51 = 33.3% -->
-            <circle cx="60" cy="60" r="46" fill="none" stroke="#F97316" stroke-width="18"
-              stroke-dasharray="95.8 193.6" stroke-dashoffset="-155.2" stroke-linecap="butt"/>
-            <text x="60" y="56" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="14" font-weight="600" fill="#1A1A18">67%</text>
-            <text x="60" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#A0A09A">provincia</text>
+          <svg viewBox="0 0 120 120" width="100" height="100" style="flex-shrink:0">
+            <circle cx="60" cy="60" r="44" fill="none" stroke="#F5F5F3" stroke-width="16"/>
+            <circle cx="60" cy="60" r="44" fill="none" stroke="var(--teal)" stroke-width="16"
+              stroke-dasharray="184.3 92.6" stroke-dashoffset="34.9"/>
+            <circle cx="60" cy="60" r="44" fill="none" stroke="var(--orange)" stroke-width="16"
+              stroke-dasharray="92.6 184.3" stroke-dashoffset="-149.4"/>
+            <text x="60" y="55" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#1A1A18">67%</text>
+            <text x="60" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#A0A09A">provincia</text>
           </svg>
           <div class="donut-legend">
             <div class="donut-leg-item"><div class="donut-dot" style="background:var(--teal)"></div><div><div class="donut-leg-val">Provincia</div><div>34 · 67%</div></div></div>
-            <div class="donut-leg-item"><div class="donut-dot" style="background:#F97316"></div><div><div class="donut-leg-val">Lima</div><div>17 · 33%</div></div></div>
+            <div class="donut-leg-item"><div class="donut-dot" style="background:var(--orange)"></div><div><div class="donut-leg-val">Lima</div><div>17 · 33%</div></div></div>
           </div>
         </div>
       </div>
 
-      <!-- Gender x Location -->
       <div class="card">
         <div class="card-title" style="margin-bottom:16px;">Género × Ubicación</div>
-        <div style="display:flex;flex-direction:column;gap:16px;">
-
+        <div style="display:flex;flex-direction:column;gap:14px;">
           <div>
             <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px;">
               <span style="color:var(--pink);font-weight:500;">♀ Mujeres (26)</span>
             </div>
-            <div style="display:flex;height:10px;border-radius:6px;overflow:hidden;">
-              <div style="width:23.1%;background:var(--pink);opacity:0.5;" title="Lima"></div>
-              <div style="width:76.9%;background:var(--pink);" title="Provincia"></div>
+            <div style="display:flex;height:9px;border-radius:5px;overflow:hidden;">
+              <div style="width:23%;background:var(--pink);opacity:0.45;"></div>
+              <div style="width:77%;background:var(--pink);"></div>
             </div>
-            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-top:4px;">
-              <span>Lima: 6 (23%)</span><span>Provincia: 20 (77%)</span>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-top:3px;">
+              <span>Lima: 6 (23%)</span><span>Prov: 20 (77%)</span>
             </div>
           </div>
-
           <div>
             <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px;">
               <span style="color:var(--blue);font-weight:500;">♂ Hombres (24)</span>
             </div>
-            <div style="display:flex;height:10px;border-radius:6px;overflow:hidden;">
-              <div style="width:45.8%;background:var(--blue);opacity:0.5;" title="Lima"></div>
-              <div style="width:54.2%;background:var(--blue);" title="Provincia"></div>
+            <div style="display:flex;height:9px;border-radius:5px;overflow:hidden;">
+              <div style="width:46%;background:var(--blue);opacity:0.45;"></div>
+              <div style="width:54%;background:var(--blue);"></div>
             </div>
-            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-top:4px;">
-              <span>Lima: 11 (46%)</span><span>Provincia: 13 (54%)</span>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-top:3px;">
+              <span>Lima: 11 (46%)</span><span>Prov: 13 (54%)</span>
             </div>
           </div>
-
-          <div style="background:var(--bg);border-radius:6px;padding:10px 12px;font-size:11px;color:var(--text2);line-height:1.6;">
-            Las mujeres compran <strong>77% desde provincia</strong>. Los hombres están más distribuidos entre Lima y provincia (54/46).
+          <div style="background:var(--bg);border-radius:6px;padding:10px;font-size:11px;color:var(--text2);line-height:1.6;">
+            Mujeres = <strong>77% provincia</strong>. Hombres más balanceados (54/46). Provincia es tu mercado core.
           </div>
         </div>
       </div>
 
-    </div>
-  </div>
-
-  <!-- Couriers breakdown -->
-  <div class="sec">
-    <div class="sec-label">Cobertura geográfica</div>
-    <div class="sec-title">Distribución por courier</div>
-    <div class="card">
-      <div class="card-head">
-        <div class="card-title">Pedidos por courier · Lima vs Provincia</div>
-        <div class="card-sub">NOSOTROS + IN DRVER = Lima · SHALOM + OLVA + DINSIDES = Provincia</div>
-      </div>
-      <div class="bar-row" id="courier-bars"></div>
     </div>
   </div>
 
   <hr class="div">
 
-  <!-- ── INSIGHTS ── -->
+  <!-- INSIGHTS -->
   <div class="sec">
-    <div class="sec-label">Análisis · Lo que quizás no estás viendo</div>
-    <div class="sec-title">Hallazgos clave</div>
+    <div class="sec-label">Análisis</div>
+    <div class="sec-title">Lo que quizás no estás viendo</div>
     <div class="insight-grid">
-
-      <div class="insight warn">
-        <div class="insight-icon">⚠️</div>
-        <div class="insight-title">Alta volatilidad semanal</div>
-        <div class="insight-body">La desviación estándar es <strong>S/. 267</strong>. Hay dependencia de pedidos grandes puntuales (Tizhna S/. 277, Marco Moreno S/. 182). Sin ellos, varias semanas habrían sido mediocres.</div>
+      <div class="insight danger">
+        <div class="insight-icon">📉</div>
+        <div class="insight-title">S2 fue tu única semana en pérdida</div>
+        <div class="insight-body">La semana 17–23 Nov tuvo <strong>utilidad negativa (–S/. 30)</strong> por el pedido de Gal (CSM-B 1200 a S/. 0 con costo de S/. 40). Un solo pedido mal priceado hundió toda la semana.</div>
       </div>
-
       <div class="insight good">
-        <div class="insight-icon">📈</div>
-        <div class="insight-title">Febrero = 44% de todas las ventas</div>
-        <div class="insight-body">Con solo 3 semanas, febrero superó a los 3 meses anteriores combinados en ritmo de pedidos. El negocio <strong>no está estancado, está escalando</strong>.</div>
+        <div class="insight-icon">💰</div>
+        <div class="insight-title">PERSONALIZADO es tu producto más rentable</div>
+        <div class="insight-body">Con <strong>74% de margen y S/. 102 de utilidad por pedido</strong>, casi duplica el rendimiento del resto. Melissa Barros generó S/. 180 de utilidad sola. Prioriza este tipo de pedidos.</div>
       </div>
-
-      <div class="insight info">
-        <div class="insight-icon">🌍</div>
-        <div class="insight-title">Provincia es tu mercado principal</div>
-        <div class="insight-body">El <strong>67% de tus clientes son de provincia</strong>, y las mujeres de provincia representan el segmento más grande (39% del total). DINSIDES y SHALOM son tus couriers clave.</div>
-      </div>
-
       <div class="insight warn">
-        <div class="insight-icon">🗓️</div>
-        <div class="insight-title">Gap de enero: ~S/. 1,500 perdidos</div>
-        <div class="insight-body">Tres semanas casi sin ventas entre el 22 Dic y el 26 Ene. Es predecible y evitable con una estrategia de preventa o campaña activa en esa ventana.</div>
-      </div>
-
-      <div class="insight info">
         <div class="insight-icon">📦</div>
-        <div class="insight-title">OP-L-N 1200 es tu producto estrella</div>
-        <div class="insight-body"><strong>21% de todas las ventas</strong> son de este modelo. Si hay un producto al que asegurarle stock, rebajas y promoción activa, es este. Lo compran tanto hombres como mujeres.</div>
+        <div class="insight-title">CSM-B 1200: tu producto menos rentable</div>
+        <div class="insight-body">Solo <strong>31.5% de margen</strong>, el peor de toda tu línea. Si el cliente normal paga S/. 94, solo quedan ~S/. 18 de ganancia real. Considera subir el precio o descontinuarlo.</div>
       </div>
-
+      <div class="insight info">
+        <div class="insight-icon">📈</div>
+        <div class="insight-title">Tu margen mejoró con el tiempo</div>
+        <div class="insight-body">Noviembre: <strong>40% margen</strong>. Diciembre: 58%. Febrero: 56%. No es solo que vendes más — también estás siendo más eficiente. Probablemente costos de costo/producto bajaron o el mix mejoró.</div>
+      </div>
+      <div class="insight warn">
+        <div class="insight-icon">🌍</div>
+        <div class="insight-title">Provincia = 67% de clientes, mayor riesgo logístico</div>
+        <div class="insight-body">DINSIDES y SHALOM, tus dos couriers de provincia, son los únicos con incidencias registradas. A más volumen provincial, más exposición. Vale negociar mejores condiciones o revisar sus SLAs.</div>
+      </div>
       <div class="insight good">
         <div class="insight-icon">🆕</div>
-        <div class="insight-title">Los modelos 890 son la nueva línea</div>
-        <div class="insight-body">Aparecieron por primera vez en <strong>febrero</strong> con 5 ventas en pocas semanas. Si el precio es más accesible, pueden atraer un segmento nuevo y aumentar volumen de pedidos.</div>
+        <div class="insight-title">Los modelos 890: nueva línea prometedora</div>
+        <div class="insight-body">Aparecieron en febrero con <strong>5 ventas y márgenes de 52–54%</strong>, similares a la línea 1200. Si el precio de costo es menor y el precio de venta compite bien, pueden abrir un nuevo segmento.</div>
       </div>
-
     </div>
   </div>
 
 </div>
 
 <script>
-const fmt  = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');
-const fmtD = n => n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
-
 /* ── DATA ── */
 const weekly = [
-  {s:"S1", rango:"10–16 Nov 25", pedidos:1, total:80,    proj:false},
-  {s:"S2", rango:"17–23 Nov 25", pedidos:2, total:50,    proj:false},
-  {s:"S3", rango:"24–30 Nov 25", pedidos:5, total:457.7, proj:false},
-  {s:"S4", rango:"01–07 Dic 25", pedidos:3, total:457,   proj:false},
-  {s:"S5", rango:"08–14 Dic 25", pedidos:2, total:195,   proj:false},
-  {s:"S6", rango:"15–21 Dic 25", pedidos:6, total:569.2, proj:false},
-  {s:"S7", rango:"22–28 Dic 25", pedidos:2, total:173.5, proj:false},
-  {s:"S8", rango:"12–18 Ene 26", pedidos:1, total:94,    proj:false},
-  {s:"S9", rango:"26 Ene–01 Feb",pedidos:7, total:676.2, proj:false},
-  {s:"S10",rango:"02–08 Feb 26", pedidos:8, total:923.4, proj:false},
-  {s:"S11",rango:"09–15 Feb 26", pedidos:6, total:560.3, proj:false},
-  {s:"S12",rango:"16–22 Feb 26", pedidos:8, total:707.2, proj:false},
-  {s:"S13",rango:"23 Feb–01 Mar",pedidos:null,total:748, proj:true},
-  {s:"S14",rango:"02–08 Mar 26", pedidos:null,total:819, proj:true},
-  {s:"S15",rango:"09–15 Mar 26", pedidos:null,total:890, proj:true},
-  {s:"S16",rango:"16–22 Mar 26", pedidos:null,total:961, proj:true},
+  {s:"S1", r:"10–16 Nov",  ped:1,  tot:80,    util:41.97,  proj:false},
+  {s:"S2", r:"17–23 Nov",  ped:2,  tot:50,    util:-30.06, proj:false},
+  {s:"S3", r:"24–30 Nov",  ped:5,  tot:457.7, util:223.52, proj:false},
+  {s:"S4", r:"01–07 Dic",  ped:3,  tot:457,   util:266.85, proj:false},
+  {s:"S5", r:"08–14 Dic",  ped:2,  tot:195,   util:118.94, proj:false},
+  {s:"S6", r:"15–21 Dic",  ped:6,  tot:569.2, util:331.03, proj:false},
+  {s:"S7", r:"22–28 Dic",  ped:2,  tot:173.5, util:93.44,  proj:false},
+  {s:"S8", r:"12–18 Ene",  ped:1,  tot:94,    util:45.47,  proj:false},
+  {s:"S9", r:"26 Ene–01 Feb", ped:7, tot:676.2, util:347.46, proj:false},
+  {s:"S10",r:"02–08 Feb",  ped:8,  tot:935,   util:592.69, proj:false},
+  {s:"S11",r:"09–15 Feb",  ped:6,  tot:560.3, util:277.62, proj:false},
+  {s:"S12",r:"16–22 Feb",  ped:8,  tot:710,   util:370.57, proj:false},
+  {s:"S13",r:"23 Feb–01 Mar",ped:null,tot:748, util:396,   proj:true},
+  {s:"S14",r:"02–08 Mar",  ped:null,tot:819,  util:433,    proj:true},
+  {s:"S15",r:"09–15 Mar",  ped:null,tot:890,  util:472,    proj:true},
+  {s:"S16",r:"16–22 Mar",  ped:null,tot:961,  util:509,    proj:true},
 ];
 
 const monthly = [
-  {m:"Nov",nombre:"Noviembre 2025",pedidos:8, total:587.7},
-  {m:"Dic",nombre:"Diciembre 2025",pedidos:13,total:1394.2},
-  {m:"Ene",nombre:"Enero 2026",   pedidos:8, total:770.2},
-  {m:"Feb",nombre:"Febrero 2026", pedidos:22,total:2191.4},
+  {m:"Nov", nombre:"Nov 2025",  ped:8,  tot:587.7,  costo:352.27, util:235.43, margen:40.1},
+  {m:"Dic", nombre:"Dic 2025",  ped:13, tot:1394.7, costo:584.45, util:810.26, margen:58.1},
+  {m:"Ene", nombre:"Ene 2026",  ped:8,  tot:770.2,  costo:377.27, util:392.93, margen:51.0},
+  {m:"Feb", nombre:"Feb 2026",  ped:22, tot:2205.9, costo:965.03, util:1240.88,margen:56.3},
 ];
 
-const products = [
-  {name:"OP-L-N 1200",count:11},{name:"OP-L-B 1200",count:5},
-  {name:"JJK-N 1200",count:4},{name:"CSM-B 1200",count:4},
-  {name:"DS-N 1200",count:4},{name:"N-N 1200",count:4},
-  {name:"PERSONALIZADO",count:4},{name:"DS-B 1200",count:3},
+const prodFreq = [
+  {name:"OP-L-N 1200", count:11, util:503.3},
+  {name:"PERSONALIZADO",count:4,  util:409.7},
+  {name:"OP-L-B 1200", count:5,  util:277.1},
+  {name:"JJK-N 1200",  count:4,  util:182.5},
+  {name:"DS-N 1200",   count:4,  util:182.3},
+  {name:"N-N 1200",    count:4,  util:169.3},
+  {name:"DS-B 1200",   count:3,  util:143.1},
+  {name:"CSM-B 1200",  count:4,  util:73.8},
 ];
 
-const femProds = [
-  {name:"OP-L-N 1200",count:5},{name:"OP-L-B 1200",count:3},
-  {name:"CSM-B 1200",count:2},{name:"DS-N 1200",count:2},{name:"DS-B 1200",count:2},
-];
-const malProds = [
-  {name:"OP-L-N 1200",count:6},{name:"N-N 1200",count:3},
-  {name:"JJK-N 1200",count:3},{name:"PERSONALIZADO",count:2},{name:"DS-N 1200",count:2},
+const prodMargin = [
+  {name:"PERSONALIZADO",  margen:73.9},
+  {name:"ST-N 1200",      margen:57.4},
+  {name:"OP-L-B 1200",    margen:56.5},
+  {name:"ST-B 1200",      margen:56.5},
+  {name:"N-B 1200",       margen:55.5},
+  {name:"DB-B 1200",      margen:54.2},
+  {name:"JJK-B 890",      margen:54.0},
+  {name:"DS-B 1200",      margen:55.2},
+  {name:"N-N 1200",       margen:51.4},
+  {name:"CSM-B 1200",     margen:31.5},
 ];
 
-const couriers = [
-  {name:"DINSIDES",count:14,geo:"provincia"},{name:"NOSOTROS",count:11,geo:"lima"},
-  {name:"SHALOM",count:11,geo:"provincia"},{name:"OLVA",count:9,geo:"provincia"},
-  {name:"IN DRVER",count:6,geo:"lima"},
-];
+const fmt  = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');
+const fmtD = n => n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
 
 /* ── BAR ROWS ── */
-function renderBars(containerId, data, maxCount, color, colorFn) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
+function renderBars(id, data, maxVal, fillFn, valFn, subFn) {
+  const el = document.getElementById(id); if (!el) return;
   el.innerHTML = data.map(d => {
-    const pct = (d.count / maxCount * 100).toFixed(1);
-    const c = colorFn ? colorFn(d) : color;
+    const pct = (valFn(d) / maxVal * 100).toFixed(1);
     return `<div class="bar-item">
-      <div class="bar-item-label">${d.name}</div>
-      <div class="bar-item-track"><div class="bar-item-fill" style="width:${pct}%;background:${c}"></div></div>
-      <div class="bar-item-count">${d.count}</div>
+      <div class="bi-label" style="min-width:110px">${d.name}</div>
+      <div class="bi-track"><div class="bi-fill" style="width:${pct}%;background:${fillFn(d)}"></div></div>
+      ${subFn ? `<div class="bi-sub">${subFn(d)}</div>` : ''}
+      <div class="bi-val">${fmtD(valFn(d))}</div>
     </div>`;
   }).join('');
 }
 
-renderBars('prod-bars', products, 11, '#2563EB');
-renderBars('fem-bars',  femProds, 6, 'var(--pink)');
-renderBars('mal-bars',  malProds, 6, 'var(--blue)');
-renderBars('courier-bars', couriers, 14, null, d => d.geo === 'lima' ? '#F97316' : 'var(--teal)');
+renderBars('prod-freq',   prodFreq,   503.3, ()=>'var(--blue)',  d=>d.util,   d=>`×${d.count}`);
+renderBars('prod-margin', prodMargin, 74,    d => d.margen >= 55 ? 'var(--green)' : d.margen >= 45 ? 'var(--blue)' : 'var(--red)', d=>d.margen, null);
 
-/* ── WEEKLY LINE CHART ── */
+/* ── WEEKLY CHART: venta + utilidad ── */
 (function(){
   const svg = document.getElementById('wsvg');
-  const W=880,H=240,pl=50,pr=20,pt=20,pb=36;
+  const W=880, H=250, pl=50, pr=20, pt=22, pb=36;
   const cW=W-pl-pr, cH=H-pt-pb;
-  const maxV = Math.max(...weekly.map(d=>d.total))*1.18;
-  const n=weekly.length;
-  const xp=i=>pl+(i/(n-1))*cW;
-  const yp=v=>pt+cH-(v/maxV)*cH;
-  const hist=weekly.filter(d=>!d.proj);
-  const hi=hist.length-1;
+  const maxV = Math.max(...weekly.map(d=>d.tot)) * 1.18;
+  const n = weekly.length;
+  const xp = i => pl + (i/(n-1))*cW;
+  const yp = v => pt + cH - (Math.max(0,v)/maxV)*cH;
+  const hist = weekly.filter(d=>!d.proj);
+  const hi = hist.length - 1;
 
-  let h=`<defs>
-    <linearGradient id="hg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#2563EB" stop-opacity="0.1"/>
+  let h = `<defs>
+    <linearGradient id="totg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2563EB" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#2563EB" stop-opacity="0"/>
     </linearGradient>
-    <linearGradient id="pg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.07"/>
+    <linearGradient id="utilg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#16A34A" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#16A34A" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="projg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.06"/>
       <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/>
     </linearGradient>
   </defs>`;
 
+  // Grid
   [0,.25,.5,.75,1].forEach(f=>{
     const y=yp(maxV*f);
     h+=`<line x1="${pl}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="#EBEBEA" stroke-width="1"/>`;
     if(f>0) h+=`<text x="${pl-6}" y="${y+4}" fill="#C8C8C2" font-size="9" text-anchor="end" font-family="DM Sans,sans-serif">${fmt(maxV*f)}</text>`;
   });
 
+  // Total area hist
   let hArea=`M${xp(0)},${pt+cH}`;
-  hist.forEach((_,i)=>hArea+=` L${xp(i)},${yp(hist[i].total)}`);
+  hist.forEach((_,i)=>hArea+=` L${xp(i)},${yp(hist[i].tot)}`);
   hArea+=` L${xp(hi)},${pt+cH}Z`;
-  h+=`<path d="${hArea}" fill="url(#hg)"/>`;
+  h+=`<path d="${hArea}" fill="url(#totg)"/>`;
 
-  let pArea=`M${xp(hi)},${pt+cH} L${xp(hi)},${yp(weekly[hi].total)}`;
-  for(let i=hist.length;i<n;i++) pArea+=` L${xp(i)},${yp(weekly[i].total)}`;
+  // Util area hist
+  let uArea=`M${xp(0)},${pt+cH}`;
+  hist.forEach((_,i)=>uArea+=` L${xp(i)},${yp(hist[i].util)}`);
+  uArea+=` L${xp(hi)},${pt+cH}Z`;
+  h+=`<path d="${uArea}" fill="url(#utilg)"/>`;
+
+  // Proj area
+  let pArea=`M${xp(hi)},${pt+cH} L${xp(hi)},${yp(weekly[hi].tot)}`;
+  for(let i=hist.length;i<n;i++) pArea+=` L${xp(i)},${yp(weekly[i].tot)}`;
   pArea+=` L${xp(n-1)},${pt+cH}Z`;
-  h+=`<path d="${pArea}" fill="url(#pg)"/>`;
+  h+=`<path d="${pArea}" fill="url(#projg)"/>`;
 
-  h+=`<path d="${hist.map((_,i)=>`${i?'L':'M'}${xp(i)},${yp(hist[i].total)}`).join(' ')}" fill="none" stroke="#2563EB" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+  // Lines
+  h+=`<path d="${hist.map((_,i)=>`${i?'L':'M'}${xp(i)},${yp(hist[i].tot)}`).join(' ')}" fill="none" stroke="#2563EB" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+  h+=`<path d="${hist.map((_,i)=>`${i?'L':'M'}${xp(i)},${yp(hist[i].util)}`).join(' ')}" fill="none" stroke="#16A34A" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>`;
 
-  let pLine=`M${xp(hi)},${yp(weekly[hi].total)}`;
-  for(let i=hist.length;i<n;i++) pLine+=` L${xp(i)},${yp(weekly[i].total)}`;
-  h+=`<path d="${pLine}" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="5,4" stroke-linejoin="round" stroke-linecap="round"/>`;
+  let pLine=`M${xp(hi)},${yp(weekly[hi].tot)}`;
+  for(let i=hist.length;i<n;i++) pLine+=` L${xp(i)},${yp(weekly[i].tot)}`;
+  h+=`<path d="${pLine}" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="5,4" stroke-linejoin="round"/>`;
 
+  // Divider
   const dx=xp(hi);
   h+=`<line x1="${dx}" y1="${pt}" x2="${dx}" y2="${pt+cH}" stroke="#E0E0DC" stroke-width="1" stroke-dasharray="3,3"/>`;
   h+=`<text x="${dx+5}" y="${pt+11}" fill="#C0C0BA" font-size="8.5" font-family="DM Sans,sans-serif">proyección →</text>`;
 
+  // Dots
   weekly.forEach((d,i)=>{
-    const x=xp(i),y=yp(d.total),c=d.proj?'#8B5CF6':'#2563EB';
-    h+=`<circle cx="${x}" cy="${y}" r="${d.proj?3:3.5}" fill="${d.proj?'white':c}" stroke="${c}" stroke-width="${d.proj?1.5:0}"/>`;
+    const x=xp(i), y=yp(d.tot), c=d.proj?'#8B5CF6':'#2563EB';
+    h+=`<circle cx="${x}" cy="${y}" r="${d.proj?2.8:3.5}" fill="${d.proj?'white':c}" stroke="${c}" stroke-width="${d.proj?1.5:0}"/>`;
+    if(!d.proj) h+=`<circle cx="${x}" cy="${yp(d.util)}" r="2.5" fill="#16A34A"/>`;
     h+=`<circle cx="${x}" cy="${y}" r="10" fill="transparent" class="wpt" data-i="${i}" style="cursor:default"/>`;
-    h+=`<text x="${x}" y="${H-pb+13}" fill="${d.proj?'#C8C8C2':'#B0B0AA'}" font-size="8.5" text-anchor="middle" font-family="DM Sans,sans-serif">${d.s}</text>`;
+    h+=`<text x="${x}" y="${H-pb+13}" fill="${d.proj?'#C8C8C2':'#B0B0AA'}" font-size="8" text-anchor="middle" font-family="DM Sans,sans-serif">${d.s}</text>`;
   });
 
   svg.innerHTML=h;
   const tt=document.getElementById('wtt');
   svg.querySelectorAll('.wpt').forEach(el=>{
     el.addEventListener('mouseenter',()=>{
-      const i=+el.getAttribute('data-i'),d=weekly[i];
+      const i=+el.getAttribute('data-i'), d=weekly[i];
       const r=svg.getBoundingClientRect();
-      const x=xp(i)/W*r.width, y=yp(d.total)/H*r.height;
-      tt.innerHTML=`<div class="tt-lbl">${d.s} · ${d.rango}</div><div class="tt-val">S/. ${fmtD(d.total)}</div><div class="tt-sub">${d.proj?'🔮 proyección':d.pedidos+' pedidos'}</div>`;
-      tt.style.left=x+'px'; tt.style.top=(y-64)+'px'; tt.classList.add('show');
+      const x=xp(i)/W*r.width, y=yp(d.tot)/H*r.height;
+      const margen = d.tot>0 ? (d.util/d.tot*100).toFixed(1) : '—';
+      tt.innerHTML=`<div class="tt-lbl">${d.s} · ${d.r}</div><div class="tt-val">S/. ${fmtD(d.tot)}</div><div class="tt-sub">${d.proj?'🔮 proyección':`Util: S/. ${fmtD(d.util)} · Margen: ${margen}%`}</div>`;
+      tt.style.left=x+'px'; tt.style.top=(y-68)+'px'; tt.classList.add('show');
     });
     el.addEventListener('mouseleave',()=>tt.classList.remove('show'));
   });
 })();
 
-/* ── MONTHLY BAR CHART ── */
+/* ── MONTHLY STACKED BAR ── */
 (function(){
   const svg=document.getElementById('msvg');
-  const W=880,H=210,pl=50,pr=20,pt=18,pb=42;
+  const W=880,H=220,pl=50,pr=20,pt=18,pb=44;
   const cW=W-pl-pr,cH=H-pt-pb;
-  const maxV=Math.max(...monthly.map(d=>d.total))*1.18;
-  const slot=cW/monthly.length,bw=slot*0.35;
+  const maxV=Math.max(...monthly.map(d=>d.tot))*1.18;
+  const slot=cW/monthly.length, bw=slot*0.38;
   const yp=v=>pt+cH-(v/maxV)*cH;
 
-  let h=`<defs><linearGradient id="og" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#EA580C" stop-opacity="0.9"/>
-    <stop offset="100%" stop-color="#EA580C" stop-opacity="0.5"/>
-  </linearGradient></defs>`;
-
+  let h='';
   [0,.25,.5,.75,1].forEach(f=>{
     const y=yp(maxV*f);
     h+=`<line x1="${pl}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="#EBEBEA" stroke-width="1"/>`;
@@ -580,13 +683,19 @@ renderBars('courier-bars', couriers, 14, null, d => d.geo === 'lima' ? '#F97316'
   });
 
   monthly.forEach((d,i)=>{
-    const bh=(d.total/maxV)*cH;
-    const x=pl+i*slot+(slot-bw)/2, y=yp(d.total);
-    h+=`<rect x="${x}" y="${y}" width="${bw}" height="${bh}" fill="url(#og)" rx="5"/>`;
+    const x=pl+i*slot+(slot-bw)/2;
+    const costoH=(d.costo/maxV)*cH, utilH=(d.util/maxV)*cH;
+    const costoY=pt+cH-costoH-utilH, utilY=pt+cH-utilH;
+
+    h+=`<rect x="${x}" y="${costoY}" width="${bw}" height="${costoH}" fill="rgba(220,38,38,0.18)" rx="0"/>`;
+    h+=`<rect x="${x}" y="${utilY}"  width="${bw}" height="${utilH}"  fill="rgba(22,163,74,0.75)"  rx="5" ry="5"/>`;
+    // fix bottom corners
+    h+=`<rect x="${x}" y="${utilY+utilH-6}" width="${bw}" height="6" fill="rgba(22,163,74,0.75)"/>`;
+
     h+=`<rect x="${pl+i*slot}" y="${pt}" width="${slot}" height="${cH}" fill="transparent" class="mpt" data-i="${i}" style="cursor:default"/>`;
-    h+=`<text x="${x+bw/2}" y="${H-pb+16}" fill="#AEAEA8" font-size="11.5" text-anchor="middle" font-family="DM Sans,sans-serif" font-weight="500">${d.m}</text>`;
-    h+=`<text x="${x+bw/2}" y="${y-7}" fill="#EA580C" font-size="9.5" text-anchor="middle" font-family="DM Sans,sans-serif" font-weight="500">S/. ${fmt(d.total)}</text>`;
-    if(bh>26) h+=`<text x="${x+bw/2}" y="${y+bh/2+4}" fill="white" font-size="9" text-anchor="middle" font-family="DM Sans,sans-serif" opacity="0.9">${d.pedidos} ped.</text>`;
+    h+=`<text x="${x+bw/2}" y="${H-pb+16}" fill="#AEAEA8" font-size="12" text-anchor="middle" font-family="DM Sans,sans-serif" font-weight="500">${d.m}</text>`;
+    h+=`<text x="${x+bw/2}" y="${costoY-7}" fill="#64748B" font-size="9.5" text-anchor="middle" font-family="DM Sans,sans-serif" font-weight="500">S/. ${fmt(d.tot)}</text>`;
+    if(utilH>18) h+=`<text x="${x+bw/2}" y="${utilY+utilH/2+4}" fill="white" font-size="9" text-anchor="middle" font-family="DM Sans,sans-serif" opacity="0.95">${d.margen}%</text>`;
   });
 
   svg.innerHTML=h;
@@ -594,10 +703,10 @@ renderBars('courier-bars', couriers, 14, null, d => d.geo === 'lima' ? '#F97316'
   svg.querySelectorAll('.mpt').forEach(el=>{
     el.addEventListener('mouseenter',()=>{
       const i=+el.getAttribute('data-i'),d=monthly[i];
-      const cx=pl+i*slot+slot/2, cy=yp(d.total);
+      const cx=pl+i*slot+slot/2, cy=yp(d.tot);
       const r=svg.getBoundingClientRect();
-      tt.innerHTML=`<div class="tt-lbl">${d.nombre}</div><div class="tt-val">S/. ${fmtD(d.total)}</div><div class="tt-sub">${d.pedidos} pedidos</div>`;
-      tt.style.left=(cx/880*r.width)+'px'; tt.style.top=((cy/210*r.height)-64)+'px'; tt.classList.add('show');
+      tt.innerHTML=`<div class="tt-lbl">${d.nombre} · ${d.ped} pedidos</div><div class="tt-val">S/. ${fmtD(d.tot)}</div><div class="tt-sub">Util: S/. ${fmtD(d.util)} · Costo: S/. ${fmtD(d.costo)} · Margen: ${d.margen}%</div>`;
+      tt.style.left=(cx/W*r.width)+'px'; tt.style.top=((cy/H*r.height)-72)+'px'; tt.classList.add('show');
     });
     el.addEventListener('mouseleave',()=>tt.classList.remove('show'));
   });
